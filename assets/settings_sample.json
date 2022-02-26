@@ -1,0 +1,9 @@
+{
+    "username": "YOUR RTA USERNAME",
+    "password": "YOUR RTA PASSWORD",
+    "python3_executable": "python3",
+    "have_booking": true,
+    "headless": true,
+    "wait_timer": 2,
+    "wait_timer_car": 5
+}
