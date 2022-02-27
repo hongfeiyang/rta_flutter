@@ -2,8 +2,9 @@
     "username": "YOUR RTA USERNAME",
     "password": "YOUR RTA PASSWORD",
     "python3_executable": "python3",
-    "have_booking": true,
+    "have_booking": false,
     "headless": true,
-    "wait_timer": 2,
-    "wait_timer_car": 5
+    "wait_timer": 0.5,
+    "main_category": "Car",
+    "sub_category": "DKT"
 }
