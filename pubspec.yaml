@@ -40,7 +40,7 @@ dependencies:
   intl: ^0.17.0
   pool: ^1.5.0
   tuple: ^2.0.0
-  flutter_local_notifications: ^10.0.0-dev.8
+  flutter_local_notifications: ^9.3.3
   go_router: ^3.0.2
 
   # The following adds the Cupertino Icons font to your application.
@@ -74,6 +74,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - sound/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

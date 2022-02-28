@@ -2,10 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rta_flutter/availability_screen.dart';
+import 'package:rta_flutter/details_screen.dart';
+import 'package:rta_flutter/providers/notification_service_provider.dart';
 import 'package:rta_flutter/settings_screen.dart';
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final notificationService = NotificationService();
+  await notificationService.init();
+  runApp(ProviderScope(
+    overrides: [
+      notificationServiceProvider.overrideWithValue(notificationService),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +37,11 @@ class MyApp extends StatelessWidget {
         GoRoute(
           path: '/settings',
           builder: (context, state) => const SettingsScreen(),
+        ),
+        GoRoute(
+          path: '/details/:id',
+          builder: (context, state) =>
+              DetailsScreen(locationId: state.params['id']!),
         ),
       ],
     );

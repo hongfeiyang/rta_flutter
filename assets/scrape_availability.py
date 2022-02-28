@@ -95,7 +95,7 @@ try:
             if(driver.find_element(By.ID, "getEarliestTime").is_enabled()):
                 driver.find_element(By.ID, "getEarliestTime").click()
     result = driver.execute_script('return timeslots')
-    results_file = open(sys.argv[2], "a")
+    results_file = open(sys.argv[2], "w")
     results_file.write(
         '{"location":"'+sys.argv[1]+'","result":'+json.dumps(result)+'}\n')
     results_file.close()

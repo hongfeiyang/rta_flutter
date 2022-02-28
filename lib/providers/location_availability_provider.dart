@@ -11,11 +11,11 @@ import '../models/location_info.dart';
 import '../models/location_state.dart';
 import 'test_center_provider.dart';
 
-final allLocationsAvailabilityProvider = StateNotifierProvider<LocationAvailabilityNotifier, List<LocationState>>(
+final allLocationsAvailabilityProvider =
+    StateNotifierProvider<LocationAvailabilityNotifier, List<LocationState>>(
   (ref) {
     final numProc = ref.watch(concurrentProcessProvider).current;
     final locations = ref.watch(testCenterLocationsProvider).value ?? [];
-
     return LocationAvailabilityNotifier(
       locations,
       pool: Pool(numProc),
@@ -48,7 +48,9 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
   void updateDistance(LocationCoordinates userLocation) {
     state = [
       for (final loc in state)
-        loc.copyWith(distanceToCurrentLocation: userLocation.distanceTo(loc.testCenter.coordinate))
+        loc.copyWith(
+            distanceToCurrentLocation:
+                userLocation.distanceTo(loc.testCenter.coordinate))
     ];
   }
 
@@ -81,7 +83,8 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
     for (var e in state) {
       if (e.selected) {
         pool.request().then((resource) {
-          updateOneAvailability(e.locationInfo.location, resource: resource).then((_) {
+          updateOneAvailability(e.locationInfo.location, resource: resource)
+              .then((_) {
             _remainingTasksCount--;
             if (_finishedAddingTask && _remainingTasksCount == 0) {
               _onUpdateCompleted?.call();
@@ -104,7 +107,8 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
   Future<void> updateOneAvailability(String id, {PoolResource? resource}) {
     final Completer completer = Completer();
 
-    Process.start('python3', [_pythonExePath, id, 'availabilities/$id.json']).then(
+    Process.start('python3', [_pythonExePath, id, 'availabilities/$id.json'])
+        .then(
       (proc) {
         print('Process Started: $id');
         proc.exitCode.then((value) => print('Process exited, code: $value'));

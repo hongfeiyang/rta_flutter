@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:rta_flutter/models/location_state.dart';
 import 'package:rta_flutter/providers/timer_provider.dart';
@@ -364,7 +365,12 @@ class _LocationListRow extends ConsumerWidget {
           col4Flex,
           Align(
             alignment: Alignment.centerLeft,
-            child: Text('${rowData.numberOfVacancies}'),
+            child: TextButton(
+              child: Text('${rowData.numberOfVacancies}'),
+              onPressed: () {
+                context.push('/details/${rowData.locationInfo.location}');
+              },
+            ),
           ),
         ),
         Tuple2(
