@@ -4,7 +4,7 @@
     "python3_executable": "python3",
     "have_booking": false,
     "headless": true,
-    "wait_timer": 0.5,
+    "wait_timer": 2,
     "main_category": "Car",
-    "sub_category": "DKT"
+    "sub_category": "DT"
 }
