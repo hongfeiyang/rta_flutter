@@ -141,6 +141,24 @@ class _AvailabilityScreenState extends ConsumerState<AvailabilityScreen> {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              const Text('Show Selected Only'),
+                              Consumer(
+                                builder: (context, ref, child) {
+                                  return Switch(
+                                    value: ref.watch(showSelectedOnlyFilter),
+                                    onChanged: (value) {
+                                      ref
+                                          .read(showSelectedOnlyFilter.notifier)
+                                          .state = value;
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
                               const Text(
                                 'Your Location: ',
                                 style:
