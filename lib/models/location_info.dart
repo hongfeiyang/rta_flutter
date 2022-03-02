@@ -12,7 +12,8 @@ class LocationInfo with _$LocationInfo {
     Result? result,
   }) = _Location;
 
-  factory LocationInfo.fromJson(Map<String, dynamic> json) => _$LocationInfoFromJson(json);
+  factory LocationInfo.fromJson(Map<String, dynamic> json) =>
+      _$LocationInfoFromJson(json);
 }
 
 @freezed
@@ -30,7 +31,8 @@ class Ajaxresult with _$Ajaxresult {
     Slots? slots,
   }) = _Ajaxresult;
 
-  factory Ajaxresult.fromJson(Map<String, dynamic> json) => _$AjaxresultFromJson(json);
+  factory Ajaxresult.fromJson(Map<String, dynamic> json) =>
+      _$AjaxresultFromJson(json);
 }
 
 @freezed
@@ -51,7 +53,8 @@ class ListTimeSlot with _$ListTimeSlot {
     @CustomDateTimeConverter() DateTime? startTime,
   }) = _ListTimeSlot;
 
-  factory ListTimeSlot.fromJson(Map<String, dynamic> json) => _$ListTimeSlotFromJson(json);
+  factory ListTimeSlot.fromJson(Map<String, dynamic> json) =>
+      _$ListTimeSlotFromJson(json);
 }
 
 class CustomDateTimeConverter implements JsonConverter<DateTime?, String?> {
@@ -60,7 +63,7 @@ class CustomDateTimeConverter implements JsonConverter<DateTime?, String?> {
   @override
   DateTime? fromJson(String? json) {
     if (json == null) return null;
-    return CustomeTimeParser.parseRTADateTime(json);
+    return CustomTimeParser.parseRTADateTime(json);
   }
 
   @override

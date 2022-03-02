@@ -18,34 +18,40 @@ void main() async {
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+
+  final _router = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: '/availabilities',
+        builder: (context, state) => const AvailabilityScreen(),
+      ),
+      GoRoute(
+        path: '/settings',
+        builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: '/details/:id',
+        builder: (context, state) =>
+            DetailsScreen(locationId: state.params['id']!),
+      ),
+    ],
+  );
+
   @override
   Widget build(BuildContext context) {
-    final _router = GoRouter(
-      routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) => const HomeScreen(),
-        ),
-        GoRoute(
-          path: '/availabilities',
-          builder: (context, state) => const AvailabilityScreen(),
-        ),
-        GoRoute(
-          path: '/settings',
-          builder: (context, state) => const SettingsScreen(),
-        ),
-        GoRoute(
-          path: '/details/:id',
-          builder: (context, state) =>
-              DetailsScreen(locationId: state.params['id']!),
-        ),
-      ],
-    );
-
     return MaterialApp.router(
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:rta_flutter/models/location_info.dart';
 import 'package:rta_flutter/models/location_state.dart';
 import 'package:rta_flutter/providers/location_availability_provider.dart';
 
-final _dateFormatter = DateFormat('E HH:mm:ss MM/dd/yyyy');
+import 'utils.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key, required this.locationId}) : super(key: key);
@@ -54,7 +53,7 @@ class DetailsDataSource extends DataTableSource {
   @override
   DataRow? getRow(int index) {
     final date = slots[index].startTime != null
-        ? _dateFormatter.format(slots[index].startTime!)
+        ? CustomTimeParser.dateFormatter.format(slots[index].startTime!)
         : null;
 
     return DataRow(cells: [

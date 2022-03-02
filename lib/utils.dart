@@ -1,11 +1,13 @@
 import 'package:intl/intl.dart';
 
-final DateFormat customDateTimeFormatter = DateFormat('dd/MM/yyyy H:mm');
+class CustomTimeParser {
+  static final DateFormat rtaDateTimeParserFormatter =
+      DateFormat('dd/MM/yyyy H:mm');
+  static final dateFormatter = DateFormat('E HH:mm:ss dd/MM/yyyy');
 
-class CustomeTimeParser {
   static DateTime? parseRTADateTime(String string) {
     try {
-      final res = customDateTimeFormatter.parse(string);
+      final res = rtaDateTimeParserFormatter.parse(string);
       return res;
     } catch (e) {
       print('Error parsing time');
