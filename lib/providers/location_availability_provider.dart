@@ -4,11 +4,10 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pool/pool.dart';
-import 'package:rta_flutter/models/location_coordinates.dart';
-import 'package:rta_flutter/providers/process_provider.dart';
+import 'package:rta_flutter/providers/booking_watcher_provider.dart';
 
-import '../models/location_info.dart';
-import '../models/location_state.dart';
+import '../models/models.dart';
+import 'process_provider.dart';
 import 'test_center_provider.dart';
 
 final allLocationsAvailabilityProvider =
@@ -18,6 +17,7 @@ final allLocationsAvailabilityProvider =
     final locations = ref.watch(testCenterLocationsProvider).value ?? [];
     return LocationAvailabilityNotifier(
       locations,
+      ref.read,
       pool: Pool(numProc),
     );
   },
@@ -25,20 +25,22 @@ final allLocationsAvailabilityProvider =
 
 class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
   LocationAvailabilityNotifier(
-    List<LocationState> state, {
+    List<LocationState> state,
+    this.read, {
     this.userLocation,
     required this.pool,
   }) : super(state);
 
   @override
   void dispose() {
-    killAllRunningProcess();
     pool.close();
+    killAllRunningProcess();
     super.dispose();
   }
 
   final LocationCoordinates? userLocation;
   final Pool pool;
+  final Reader read;
 
   final String _pythonExePath = 'assets/scrape_availability.py';
   int _remainingTasksCount = 0;
@@ -88,6 +90,8 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
             _remainingTasksCount--;
             if (_finishedAddingTask && _remainingTasksCount == 0) {
               _onUpdateCompleted?.call();
+              read(bookingWatcherProvider.notifier)
+                  .onLocationDataChanged(state);
             }
           });
         });
@@ -98,7 +102,7 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
     _finishedAddingTask = true;
 
     if (_finishedAddingTask && _remainingTasksCount == 0) {
-      /// if we reach here, it means no location is selected
+      /// if we reach here, it means no location was selected
       /// treat this as skipped, timer will restart
       _onUpdateCompleted?.call();
     }

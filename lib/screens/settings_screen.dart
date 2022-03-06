@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rta_flutter/providers/notification_service_provider.dart';
-import 'package:rta_flutter/providers/timer_provider.dart';
 
-import 'providers/process_provider.dart';
+import '../providers/providers.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);

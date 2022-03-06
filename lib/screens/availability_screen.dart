@@ -4,14 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rta_flutter/models/location_state.dart';
-import 'package:rta_flutter/providers/timer_provider.dart';
 import 'package:tuple/tuple.dart';
 
-import 'providers/availability_screen_providers.dart';
-import 'providers/location_availability_provider.dart';
-import 'providers/test_center_provider.dart';
-import 'providers/user_location_provider.dart';
-import 'utils.dart';
+import '../providers/providers.dart';
+import '../utils.dart';
 
 const int col1Flex = 1;
 const int col2Flex = 2;

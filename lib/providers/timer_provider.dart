@@ -6,7 +6,8 @@ import 'package:rta_flutter/providers/location_availability_provider.dart';
 
 import '../models/auto_update_timer_state.dart';
 
-final autoUpdateProvider = StateNotifierProvider<AutoUpdateTimerNotifier, AutoUpdateTimerState>(
+final autoUpdateProvider =
+    StateNotifierProvider<AutoUpdateTimerNotifier, AutoUpdateTimerState>(
   (ref) {
     return AutoUpdateTimerNotifier(
       const AutoUpdateTimerState(interval: 15 * 60),
@@ -16,11 +17,11 @@ final autoUpdateProvider = StateNotifierProvider<AutoUpdateTimerNotifier, AutoUp
 );
 
 class AutoUpdateTimerNotifier extends StateNotifier<AutoUpdateTimerState> {
-  AutoUpdateTimerNotifier(AutoUpdateTimerState state, this._reader) : super(state);
+  AutoUpdateTimerNotifier(AutoUpdateTimerState state, this.read) : super(state);
 
   RestartableTimer? _autoUpdateTimer;
   Timer? _countdownTimer;
-  final Reader _reader;
+  final Reader read;
 
   void updateAutoUpdateInterval(int newValue) {
     state = state.copyWith(interval: newValue * 60);
@@ -40,13 +41,15 @@ class AutoUpdateTimerNotifier extends StateNotifier<AutoUpdateTimerState> {
     if (state.enabled) {
       state = state.copyWith(timeTillNextUpdate: state.interval);
       _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        state = state.copyWith(timeTillNextUpdate: state.timeTillNextUpdate! - 1);
+        state =
+            state.copyWith(timeTillNextUpdate: state.timeTillNextUpdate! - 1);
       });
       _autoUpdateTimer = RestartableTimer(
         Duration(seconds: state.interval),
         () {
           _countdownTimer?.cancel();
-          _reader(allLocationsAvailabilityProvider.notifier).updateSelectedAvailability(
+          read(allLocationsAvailabilityProvider.notifier)
+              .updateSelectedAvailability(
             onUpdateCompleted: () {
               startTimerIfNeeded();
             },

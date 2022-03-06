@@ -4,7 +4,7 @@ import 'package:rta_flutter/models/location_info.dart';
 import 'package:rta_flutter/models/location_state.dart';
 import 'package:rta_flutter/providers/location_availability_provider.dart';
 
-import 'utils.dart';
+import '../utils.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key, required this.locationId}) : super(key: key);

@@ -10,6 +10,8 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
+  int _id = 0;
+
   Future<void> init() async {
     /// Note: permissions aren't requested here just to demonstrate that can be
     /// done later
@@ -71,7 +73,8 @@ class NotificationService {
     print('request permission: $result');
   }
 
-  Future<void> showNotificationCustomSound() async {
+  Future<void> showNotificationCustomSound(
+      String titleText, String bodyText) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'your other channel id',
@@ -94,9 +97,9 @@ class NotificationService {
       linux: linuxPlatformChannelSpecifics,
     );
     await flutterLocalNotificationsPlugin.show(
-      0,
-      'custom sound notification title',
-      'custom sound notification body',
+      _id++,
+      titleText,
+      bodyText,
       platformChannelSpecifics,
     );
   }

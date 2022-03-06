@@ -3,16 +3,19 @@ import 'package:location/location.dart';
 import 'package:rta_flutter/models/location_coordinates.dart';
 import 'package:rta_flutter/providers/location_availability_provider.dart';
 
-final userLocationProvider = StateNotifierProvider<UserLocationStateNotifier, AsyncValue<LocationCoordinates?>>(
+final userLocationProvider = StateNotifierProvider<UserLocationStateNotifier,
+    AsyncValue<LocationCoordinates?>>(
   (ref) {
     return UserLocationStateNotifier(const AsyncData(null), ref.read);
   },
 );
 
-class UserLocationStateNotifier extends StateNotifier<AsyncValue<LocationCoordinates?>> {
-  UserLocationStateNotifier(AsyncValue<LocationCoordinates?> state, this._reader) : super(state);
+class UserLocationStateNotifier
+    extends StateNotifier<AsyncValue<LocationCoordinates?>> {
+  UserLocationStateNotifier(AsyncValue<LocationCoordinates?> state, this.read)
+      : super(state);
 
-  final Reader _reader;
+  final Reader read;
 
   void updateLocation() async {
     final location = Location();
@@ -38,8 +41,10 @@ class UserLocationStateNotifier extends StateNotifier<AsyncValue<LocationCoordin
     if (_locationData.latitude == null || _locationData.longitude == null) {
       state = const AsyncData(null);
     }
-    final userLocation = LocationCoordinates(latitude: _locationData.latitude!, longitude: _locationData.longitude!);
+    final userLocation = LocationCoordinates(
+        latitude: _locationData.latitude!, longitude: _locationData.longitude!);
     state = AsyncData(userLocation);
-    _reader(allLocationsAvailabilityProvider.notifier).updateDistance(userLocation);
+    read(allLocationsAvailabilityProvider.notifier)
+        .updateDistance(userLocation);
   }
 }
