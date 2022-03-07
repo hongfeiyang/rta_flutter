@@ -13,6 +13,13 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select, WebDriverWait
 
+if (len(sys.argv) != 3):
+    print('usage: python3 <script_path> <location_id> <location_result_file_path>')
+    sys.exit(1)
+
+locationId = sys.argv[1]
+resultFilePath = sys.argv[2]
+
 currDir = os.getcwd()
 settings = json.load(open(f"{currDir}/assets/settings.json"))
 timeoutDuration = settings['wait_timer']
@@ -88,7 +95,7 @@ try:
     driver.find_element(By.ID, "rms_batLocLocSel").click()
     time.sleep(timeoutDuration)
     select_box = driver.find_element(By.ID, "rms_batLocationSelect2")
-    Select(select_box).select_by_value(sys.argv[1])
+    Select(select_box).select_by_value(locationId)
     time.sleep(timeoutDuration)
     driver.find_element(By.ID, "nextButton").click()
     if(driver.find_element(By.ID, "getEarliestTime").size != 0):
@@ -96,10 +103,12 @@ try:
             if(driver.find_element(By.ID, "getEarliestTime").is_enabled()):
                 driver.find_element(By.ID, "getEarliestTime").click()
     result = driver.execute_script('return timeslots')
-    results_file = open(sys.argv[2], "w+")
-    results_file.write(
-        '{"location":"'+sys.argv[1]+'","result":'+json.dumps(result)+'}\n')
-    results_file.close()
+    os.makedirs(os.path.dirname(resultFilePath), exist_ok=True)
+    with open(resultFilePath, "w") as results_file:
+        # results_file = open(resultFilePath, "w")
+        results_file.write(
+            '{"location":"'+locationId+'","result":'+json.dumps(result)+'}\n')
+        # results_file.close()
     driver.quit()
 except Exception:
     print(traceback.format_exc())
