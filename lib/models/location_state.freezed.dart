@@ -25,6 +25,7 @@ class _$LocationStateTearOff {
       bool selected = false,
       double? distanceToCurrentLocation,
       LocationInfoFetchingStatus status = LocationInfoFetchingStatus.completed,
+      Object? error,
       DateTime? lastUpdated,
       int? pid}) {
     return _LocationState(
@@ -34,6 +35,7 @@ class _$LocationStateTearOff {
       selected: selected,
       distanceToCurrentLocation: distanceToCurrentLocation,
       status: status,
+      error: error,
       lastUpdated: lastUpdated,
       pid: pid,
     );
@@ -51,6 +53,7 @@ mixin _$LocationState {
   bool get selected => throw _privateConstructorUsedError;
   double? get distanceToCurrentLocation => throw _privateConstructorUsedError;
   LocationInfoFetchingStatus get status => throw _privateConstructorUsedError;
+  Object? get error => throw _privateConstructorUsedError;
   DateTime? get lastUpdated => throw _privateConstructorUsedError;
   int? get pid => throw _privateConstructorUsedError;
 
@@ -71,6 +74,7 @@ abstract class $LocationStateCopyWith<$Res> {
       bool selected,
       double? distanceToCurrentLocation,
       LocationInfoFetchingStatus status,
+      Object? error,
       DateTime? lastUpdated,
       int? pid});
 
@@ -95,6 +99,7 @@ class _$LocationStateCopyWithImpl<$Res>
     Object? selected = freezed,
     Object? distanceToCurrentLocation = freezed,
     Object? status = freezed,
+    Object? error = freezed,
     Object? lastUpdated = freezed,
     Object? pid = freezed,
   }) {
@@ -123,6 +128,7 @@ class _$LocationStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LocationInfoFetchingStatus,
+      error: error == freezed ? _value.error : error,
       lastUpdated: lastUpdated == freezed
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -163,6 +169,7 @@ abstract class _$LocationStateCopyWith<$Res>
       bool selected,
       double? distanceToCurrentLocation,
       LocationInfoFetchingStatus status,
+      Object? error,
       DateTime? lastUpdated,
       int? pid});
 
@@ -191,6 +198,7 @@ class __$LocationStateCopyWithImpl<$Res>
     Object? selected = freezed,
     Object? distanceToCurrentLocation = freezed,
     Object? status = freezed,
+    Object? error = freezed,
     Object? lastUpdated = freezed,
     Object? pid = freezed,
   }) {
@@ -219,6 +227,7 @@ class __$LocationStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LocationInfoFetchingStatus,
+      error: error == freezed ? _value.error : error,
       lastUpdated: lastUpdated == freezed
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -241,6 +250,7 @@ class _$_LocationState extends _LocationState {
       this.selected = false,
       this.distanceToCurrentLocation,
       this.status = LocationInfoFetchingStatus.completed,
+      this.error,
       this.lastUpdated,
       this.pid})
       : super._();
@@ -260,13 +270,15 @@ class _$_LocationState extends _LocationState {
   @override
   final LocationInfoFetchingStatus status;
   @override
+  final Object? error;
+  @override
   final DateTime? lastUpdated;
   @override
   final int? pid;
 
   @override
   String toString() {
-    return 'LocationState(name: $name, locationInfo: $locationInfo, testCenter: $testCenter, selected: $selected, distanceToCurrentLocation: $distanceToCurrentLocation, status: $status, lastUpdated: $lastUpdated, pid: $pid)';
+    return 'LocationState(name: $name, locationInfo: $locationInfo, testCenter: $testCenter, selected: $selected, distanceToCurrentLocation: $distanceToCurrentLocation, status: $status, error: $error, lastUpdated: $lastUpdated, pid: $pid)';
   }
 
   @override
@@ -283,6 +295,7 @@ class _$_LocationState extends _LocationState {
             const DeepCollectionEquality().equals(
                 other.distanceToCurrentLocation, distanceToCurrentLocation) &&
             const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
             const DeepCollectionEquality()
                 .equals(other.lastUpdated, lastUpdated) &&
             const DeepCollectionEquality().equals(other.pid, pid));
@@ -297,6 +310,7 @@ class _$_LocationState extends _LocationState {
       const DeepCollectionEquality().hash(selected),
       const DeepCollectionEquality().hash(distanceToCurrentLocation),
       const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(lastUpdated),
       const DeepCollectionEquality().hash(pid));
 
@@ -314,6 +328,7 @@ abstract class _LocationState extends LocationState {
       bool selected,
       double? distanceToCurrentLocation,
       LocationInfoFetchingStatus status,
+      Object? error,
       DateTime? lastUpdated,
       int? pid}) = _$_LocationState;
   _LocationState._() : super._();
@@ -330,6 +345,8 @@ abstract class _LocationState extends LocationState {
   double? get distanceToCurrentLocation;
   @override
   LocationInfoFetchingStatus get status;
+  @override
+  Object? get error;
   @override
   DateTime? get lastUpdated;
   @override

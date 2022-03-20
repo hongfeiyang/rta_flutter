@@ -390,7 +390,8 @@ class _LocationListRow extends ConsumerWidget {
                       )
                     ] else if (rowData.status ==
                         LocationInfoFetchingStatus.error) ...[
-                      const Icon(Icons.error)
+                      const Icon(Icons.error),
+                      Flexible(child: Text('${rowData.error}'))
                     ]
                   ],
                 );

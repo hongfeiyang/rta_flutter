@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:rta_flutter/providers/providers.dart';
 
 import 'models/models.dart';
@@ -9,15 +13,33 @@ import 'screens/screens.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final script = await rootBundle.loadString('assets/scrape_availability.py');
+  final settingsFile = await rootBundle.loadString('assets/settings.json');
+  final supportDir = await getApplicationSupportDirectory();
+
+  final scriptFilePath = '${supportDir.path}/scrape_availability.py';
+  final settingsFilePath = '${supportDir.path}/settings.json';
+  File(scriptFilePath).writeAsStringSync(script);
+  File(settingsFilePath).writeAsStringSync(settingsFile);
+
   final notificationService = NotificationService();
   await notificationService.init();
   runApp(ProviderScope(
     overrides: [
       notificationServiceProvider.overrideWithValue(notificationService),
+      resourceProvider.overrideWithValue(
+        ResourceState(
+          scriptFilePath: scriptFilePath,
+          settingsFilePath: settingsFilePath,
+          applicationSupportDirectoryPath: supportDir.path,
+        ),
+      )
     ],
     child: const MyApp(),
   ));
 }
+
+Future<void> initialSetup() async {}
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -13,15 +13,18 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select, WebDriverWait
 
-if (len(sys.argv) != 3):
-    print('usage: python3 <script_path> <location_id> <location_result_file_path>')
+if (len(sys.argv) != 4):
+    print('usage: python3 <script_path> <settings_file_path> <location_id> <location_result_file_path>')
     sys.exit(1)
 
-locationId = sys.argv[1]
-resultFilePath = sys.argv[2]
+settingsFilePath = sys.argv[1]
+locationId = sys.argv[2]
+resultFilePath = sys.argv[3]
 
 currDir = os.getcwd()
-settings = json.load(open(f"{currDir}/assets/settings.json"))
+settingsFile = open(settingsFilePath)
+settings = json.load(settingsFile)
+settingsFile.close()
 timeoutDuration = settings['wait_timer']
 haveBooking = settings['have_booking']
 mainCategory = settings['main_category']

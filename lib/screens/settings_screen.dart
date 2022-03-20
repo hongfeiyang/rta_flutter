@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rta_flutter/providers/settings_provider.dart';
 
 import '../providers/providers.dart';
 
@@ -124,6 +125,54 @@ class SettingsScreen extends StatelessWidget {
                               .read(notificationServiceProvider)
                               .requestPermissions();
                         },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Username:'),
+                Expanded(
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: TextFormField(
+                          initialValue: ref.watch(settingsProvider
+                              .select((value) => value.username)),
+                          onChanged: (value) {
+                            ref
+                                .read(settingsProvider.notifier)
+                                .onUpdateUsername(value);
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Password:'),
+                Expanded(
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: TextFormField(
+                          initialValue: ref.watch(settingsProvider
+                              .select((value) => value.password)),
+                          onChanged: (value) {
+                            ref
+                                .read(settingsProvider.notifier)
+                                .onUpdatePassword(value);
+                          },
+                        ),
                       );
                     },
                   ),
