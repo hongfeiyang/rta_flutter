@@ -12,36 +12,7 @@ part of 'location_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LocationStateTearOff {
-  const _$LocationStateTearOff();
-
-  _LocationState call(
-      {required String name,
-      required LocationInfo locationInfo,
-      required TestCenter testCenter,
-      bool selected = false,
-      double? distanceToCurrentLocation,
-      LocationInfoFetchingStatus status = LocationInfoFetchingStatus.completed,
-      DateTime? lastUpdated,
-      int? pid}) {
-    return _LocationState(
-      name: name,
-      locationInfo: locationInfo,
-      testCenter: testCenter,
-      selected: selected,
-      distanceToCurrentLocation: distanceToCurrentLocation,
-      status: status,
-      lastUpdated: lastUpdated,
-      pid: pid,
-    );
-  }
-}
-
-/// @nodoc
-const $LocationState = _$LocationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LocationState {
@@ -51,6 +22,7 @@ mixin _$LocationState {
   bool get selected => throw _privateConstructorUsedError;
   double? get distanceToCurrentLocation => throw _privateConstructorUsedError;
   LocationInfoFetchingStatus get status => throw _privateConstructorUsedError;
+  Object? get error => throw _privateConstructorUsedError;
   DateTime? get lastUpdated => throw _privateConstructorUsedError;
   int? get pid => throw _privateConstructorUsedError;
 
@@ -71,6 +43,7 @@ abstract class $LocationStateCopyWith<$Res> {
       bool selected,
       double? distanceToCurrentLocation,
       LocationInfoFetchingStatus status,
+      Object? error,
       DateTime? lastUpdated,
       int? pid});
 
@@ -95,6 +68,7 @@ class _$LocationStateCopyWithImpl<$Res>
     Object? selected = freezed,
     Object? distanceToCurrentLocation = freezed,
     Object? status = freezed,
+    Object? error = freezed,
     Object? lastUpdated = freezed,
     Object? pid = freezed,
   }) {
@@ -123,6 +97,7 @@ class _$LocationStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LocationInfoFetchingStatus,
+      error: error == freezed ? _value.error : error,
       lastUpdated: lastUpdated == freezed
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -150,11 +125,11 @@ class _$LocationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LocationStateCopyWith<$Res>
+abstract class _$$_LocationStateCopyWith<$Res>
     implements $LocationStateCopyWith<$Res> {
-  factory _$LocationStateCopyWith(
-          _LocationState value, $Res Function(_LocationState) then) =
-      __$LocationStateCopyWithImpl<$Res>;
+  factory _$$_LocationStateCopyWith(
+          _$_LocationState value, $Res Function(_$_LocationState) then) =
+      __$$_LocationStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String name,
@@ -163,6 +138,7 @@ abstract class _$LocationStateCopyWith<$Res>
       bool selected,
       double? distanceToCurrentLocation,
       LocationInfoFetchingStatus status,
+      Object? error,
       DateTime? lastUpdated,
       int? pid});
 
@@ -173,15 +149,15 @@ abstract class _$LocationStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LocationStateCopyWithImpl<$Res>
+class __$$_LocationStateCopyWithImpl<$Res>
     extends _$LocationStateCopyWithImpl<$Res>
-    implements _$LocationStateCopyWith<$Res> {
-  __$LocationStateCopyWithImpl(
-      _LocationState _value, $Res Function(_LocationState) _then)
-      : super(_value, (v) => _then(v as _LocationState));
+    implements _$$_LocationStateCopyWith<$Res> {
+  __$$_LocationStateCopyWithImpl(
+      _$_LocationState _value, $Res Function(_$_LocationState) _then)
+      : super(_value, (v) => _then(v as _$_LocationState));
 
   @override
-  _LocationState get _value => super._value as _LocationState;
+  _$_LocationState get _value => super._value as _$_LocationState;
 
   @override
   $Res call({
@@ -191,10 +167,11 @@ class __$LocationStateCopyWithImpl<$Res>
     Object? selected = freezed,
     Object? distanceToCurrentLocation = freezed,
     Object? status = freezed,
+    Object? error = freezed,
     Object? lastUpdated = freezed,
     Object? pid = freezed,
   }) {
-    return _then(_LocationState(
+    return _then(_$_LocationState(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -219,6 +196,7 @@ class __$LocationStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LocationInfoFetchingStatus,
+      error: error == freezed ? _value.error : error,
       lastUpdated: lastUpdated == freezed
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -241,6 +219,7 @@ class _$_LocationState extends _LocationState {
       this.selected = false,
       this.distanceToCurrentLocation,
       this.status = LocationInfoFetchingStatus.completed,
+      this.error,
       this.lastUpdated,
       this.pid})
       : super._();
@@ -251,14 +230,16 @@ class _$_LocationState extends _LocationState {
   final LocationInfo locationInfo;
   @override
   final TestCenter testCenter;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool selected;
   @override
   final double? distanceToCurrentLocation;
-  @JsonKey()
   @override
+  @JsonKey()
   final LocationInfoFetchingStatus status;
+  @override
+  final Object? error;
   @override
   final DateTime? lastUpdated;
   @override
@@ -266,14 +247,14 @@ class _$_LocationState extends _LocationState {
 
   @override
   String toString() {
-    return 'LocationState(name: $name, locationInfo: $locationInfo, testCenter: $testCenter, selected: $selected, distanceToCurrentLocation: $distanceToCurrentLocation, status: $status, lastUpdated: $lastUpdated, pid: $pid)';
+    return 'LocationState(name: $name, locationInfo: $locationInfo, testCenter: $testCenter, selected: $selected, distanceToCurrentLocation: $distanceToCurrentLocation, status: $status, error: $error, lastUpdated: $lastUpdated, pid: $pid)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LocationState &&
+            other is _$_LocationState &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.locationInfo, locationInfo) &&
@@ -283,6 +264,7 @@ class _$_LocationState extends _LocationState {
             const DeepCollectionEquality().equals(
                 other.distanceToCurrentLocation, distanceToCurrentLocation) &&
             const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
             const DeepCollectionEquality()
                 .equals(other.lastUpdated, lastUpdated) &&
             const DeepCollectionEquality().equals(other.pid, pid));
@@ -297,45 +279,49 @@ class _$_LocationState extends _LocationState {
       const DeepCollectionEquality().hash(selected),
       const DeepCollectionEquality().hash(distanceToCurrentLocation),
       const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(lastUpdated),
       const DeepCollectionEquality().hash(pid));
 
   @JsonKey(ignore: true)
   @override
-  _$LocationStateCopyWith<_LocationState> get copyWith =>
-      __$LocationStateCopyWithImpl<_LocationState>(this, _$identity);
+  _$$_LocationStateCopyWith<_$_LocationState> get copyWith =>
+      __$$_LocationStateCopyWithImpl<_$_LocationState>(this, _$identity);
 }
 
 abstract class _LocationState extends LocationState {
   factory _LocationState(
-      {required String name,
-      required LocationInfo locationInfo,
-      required TestCenter testCenter,
-      bool selected,
-      double? distanceToCurrentLocation,
-      LocationInfoFetchingStatus status,
-      DateTime? lastUpdated,
-      int? pid}) = _$_LocationState;
+      {required final String name,
+      required final LocationInfo locationInfo,
+      required final TestCenter testCenter,
+      final bool selected,
+      final double? distanceToCurrentLocation,
+      final LocationInfoFetchingStatus status,
+      final Object? error,
+      final DateTime? lastUpdated,
+      final int? pid}) = _$_LocationState;
   _LocationState._() : super._();
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  LocationInfo get locationInfo;
+  LocationInfo get locationInfo => throw _privateConstructorUsedError;
   @override
-  TestCenter get testCenter;
+  TestCenter get testCenter => throw _privateConstructorUsedError;
   @override
-  bool get selected;
+  bool get selected => throw _privateConstructorUsedError;
   @override
-  double? get distanceToCurrentLocation;
+  double? get distanceToCurrentLocation => throw _privateConstructorUsedError;
   @override
-  LocationInfoFetchingStatus get status;
+  LocationInfoFetchingStatus get status => throw _privateConstructorUsedError;
   @override
-  DateTime? get lastUpdated;
+  Object? get error => throw _privateConstructorUsedError;
   @override
-  int? get pid;
+  DateTime? get lastUpdated => throw _privateConstructorUsedError;
+  @override
+  int? get pid => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LocationStateCopyWith<_LocationState> get copyWith =>
+  _$$_LocationStateCopyWith<_$_LocationState> get copyWith =>
       throw _privateConstructorUsedError;
 }

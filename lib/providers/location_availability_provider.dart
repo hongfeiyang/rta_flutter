@@ -4,21 +4,21 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pool/pool.dart';
-import 'package:rta_flutter/providers/booking_watcher_provider.dart';
+import 'package:rta_flutter/providers/providers.dart';
 
 import '../models/models.dart';
-import 'process_provider.dart';
-import 'test_center_provider.dart';
 
 final allLocationsAvailabilityProvider =
     StateNotifierProvider<LocationAvailabilityNotifier, List<LocationState>>(
   (ref) {
     final numProc = ref.watch(concurrentProcessProvider).current;
     final locations = ref.watch(testCenterLocationsProvider).value ?? [];
+    final resource = ref.watch(resourceProvider);
     return LocationAvailabilityNotifier(
       locations,
       ref.read,
       pool: Pool(numProc),
+      resource: resource,
     );
   },
 );
@@ -27,6 +27,7 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
   LocationAvailabilityNotifier(
     List<LocationState> state,
     this.read, {
+    required this.resource,
     this.userLocation,
     required this.pool,
   }) : super(state);
@@ -42,7 +43,11 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
   final Pool pool;
   final Reader read;
 
-  final String _pythonExePath = 'assets/scrape_availability.py';
+  final ResourceState resource;
+  String get scriptFilePath => resource.scriptFilePath;
+  String get settingsFilePath => resource.settingsFilePath;
+  String get supportDirPath => resource.applicationSupportDirectoryPath;
+
   int _remainingTasksCount = 0;
   bool _finishedAddingTask = false;
   Function? _onUpdateCompleted;
@@ -111,8 +116,16 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
   Future<void> updateOneAvailability(String id, {PoolResource? resource}) {
     final Completer completer = Completer();
 
-    Process.start('python3', [_pythonExePath, id, 'availabilities/$id.json'])
-        .then(
+    Process.start(
+      'python3',
+      [
+        scriptFilePath,
+        settingsFilePath,
+        id,
+        '$supportDirPath/availabilities/$id.json'
+      ],
+      runInShell: true,
+    ).then(
       (proc) {
         print('Process Started: $id');
         proc.exitCode.then((value) => print('Process exited, code: $value'));
@@ -121,11 +134,17 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
             if (loc.locationInfo.location == id)
               loc.copyWith(
                 status: LocationInfoFetchingStatus.loading,
+                error: null,
                 pid: proc.pid,
               )
             else
               loc,
         ];
+
+        proc.stdout.listen((event) {
+          final r = utf8.decode(event);
+          print('stderr: $r');
+        });
 
         proc.stderr.listen(
           (event) {
@@ -136,6 +155,7 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
                 if (loc.locationInfo.location == id)
                   loc.copyWith(
                     status: LocationInfoFetchingStatus.error,
+                    error: r,
                   )
                 else
                   loc,
@@ -143,7 +163,7 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
           },
           onDone: () async {
             try {
-              final file = File('./availabilities/$id.json');
+              final file = File('$supportDirPath/availabilities/$id.json');
               final jsonString = await file.readAsString();
               final lastUpdated = await file.lastModified();
               final jsonObj = json.decode(jsonString);
@@ -155,6 +175,7 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
                       lastUpdated: lastUpdated,
                       locationInfo: locationInfo,
                       status: LocationInfoFetchingStatus.completed,
+                      error: null,
                       pid: null,
                     )
                   else
@@ -166,6 +187,7 @@ class LocationAvailabilityNotifier extends StateNotifier<List<LocationState>> {
                   if (loc.locationInfo.location == id)
                     loc.copyWith(
                       status: LocationInfoFetchingStatus.error,
+                      error: e,
                       pid: null,
                     )
                   else

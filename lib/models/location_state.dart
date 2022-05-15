@@ -18,6 +18,7 @@ class LocationState with _$LocationState {
     double? distanceToCurrentLocation,
     @Default(LocationInfoFetchingStatus.completed)
         LocationInfoFetchingStatus status,
+    Object? error,
     DateTime? lastUpdated,
     int? pid,
   }) = _LocationState;

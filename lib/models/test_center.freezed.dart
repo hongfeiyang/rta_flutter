@@ -12,40 +12,11 @@ part of 'test_center.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 TestCenter _$TestCenterFromJson(Map<String, dynamic> json) {
   return _TestCenter.fromJson(json);
 }
-
-/// @nodoc
-class _$TestCenterTearOff {
-  const _$TestCenterTearOff();
-
-  _TestCenter call(
-      {required int id,
-      required String name,
-      required double latitude,
-      required double longitude,
-      double? distance,
-      @JsonKey(name: 'dist_class') String? distClass}) {
-    return _TestCenter(
-      id: id,
-      name: name,
-      latitude: latitude,
-      longitude: longitude,
-      distance: distance,
-      distClass: distClass,
-    );
-  }
-
-  TestCenter fromJson(Map<String, Object?> json) {
-    return TestCenter.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $TestCenter = _$TestCenterTearOff();
 
 /// @nodoc
 mixin _$TestCenter {
@@ -124,10 +95,11 @@ class _$TestCenterCopyWithImpl<$Res> implements $TestCenterCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TestCenterCopyWith<$Res> implements $TestCenterCopyWith<$Res> {
-  factory _$TestCenterCopyWith(
-          _TestCenter value, $Res Function(_TestCenter) then) =
-      __$TestCenterCopyWithImpl<$Res>;
+abstract class _$$_TestCenterCopyWith<$Res>
+    implements $TestCenterCopyWith<$Res> {
+  factory _$$_TestCenterCopyWith(
+          _$_TestCenter value, $Res Function(_$_TestCenter) then) =
+      __$$_TestCenterCopyWithImpl<$Res>;
   @override
   $Res call(
       {int id,
@@ -139,14 +111,14 @@ abstract class _$TestCenterCopyWith<$Res> implements $TestCenterCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$TestCenterCopyWithImpl<$Res> extends _$TestCenterCopyWithImpl<$Res>
-    implements _$TestCenterCopyWith<$Res> {
-  __$TestCenterCopyWithImpl(
-      _TestCenter _value, $Res Function(_TestCenter) _then)
-      : super(_value, (v) => _then(v as _TestCenter));
+class __$$_TestCenterCopyWithImpl<$Res> extends _$TestCenterCopyWithImpl<$Res>
+    implements _$$_TestCenterCopyWith<$Res> {
+  __$$_TestCenterCopyWithImpl(
+      _$_TestCenter _value, $Res Function(_$_TestCenter) _then)
+      : super(_value, (v) => _then(v as _$_TestCenter));
 
   @override
-  _TestCenter get _value => super._value as _TestCenter;
+  _$_TestCenter get _value => super._value as _$_TestCenter;
 
   @override
   $Res call({
@@ -157,7 +129,7 @@ class __$TestCenterCopyWithImpl<$Res> extends _$TestCenterCopyWithImpl<$Res>
     Object? distance = freezed,
     Object? distClass = freezed,
   }) {
-    return _then(_TestCenter(
+    return _then(_$_TestCenter(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -224,7 +196,7 @@ class _$_TestCenter extends _TestCenter {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TestCenter &&
+            other is _$_TestCenter &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.latitude, latitude) &&
@@ -233,6 +205,7 @@ class _$_TestCenter extends _TestCenter {
             const DeepCollectionEquality().equals(other.distClass, distClass));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -245,8 +218,8 @@ class _$_TestCenter extends _TestCenter {
 
   @JsonKey(ignore: true)
   @override
-  _$TestCenterCopyWith<_TestCenter> get copyWith =>
-      __$TestCenterCopyWithImpl<_TestCenter>(this, _$identity);
+  _$$_TestCenterCopyWith<_$_TestCenter> get copyWith =>
+      __$$_TestCenterCopyWithImpl<_$_TestCenter>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -256,32 +229,32 @@ class _$_TestCenter extends _TestCenter {
 
 abstract class _TestCenter extends TestCenter {
   const factory _TestCenter(
-      {required int id,
-      required String name,
-      required double latitude,
-      required double longitude,
-      double? distance,
-      @JsonKey(name: 'dist_class') String? distClass}) = _$_TestCenter;
+      {required final int id,
+      required final String name,
+      required final double latitude,
+      required final double longitude,
+      final double? distance,
+      @JsonKey(name: 'dist_class') final String? distClass}) = _$_TestCenter;
   const _TestCenter._() : super._();
 
   factory _TestCenter.fromJson(Map<String, dynamic> json) =
       _$_TestCenter.fromJson;
 
   @override
-  int get id;
+  int get id => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  double get latitude;
+  double get latitude => throw _privateConstructorUsedError;
   @override
-  double get longitude;
+  double get longitude => throw _privateConstructorUsedError;
   @override
-  double? get distance;
+  double? get distance => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'dist_class')
-  String? get distClass;
+  String? get distClass => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TestCenterCopyWith<_TestCenter> get copyWith =>
+  _$$_TestCenterCopyWith<_$_TestCenter> get copyWith =>
       throw _privateConstructorUsedError;
 }
