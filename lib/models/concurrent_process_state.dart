@@ -9,6 +9,6 @@ class ConcurrentProcessState with _$ConcurrentProcessState {
   const factory ConcurrentProcessState({
     @Default(8) int current,
     @Default(1) int min,
-    @Default(8) int max,
+    @Default(4) int max,
   }) = _ConcurrentProcessState;
 }
