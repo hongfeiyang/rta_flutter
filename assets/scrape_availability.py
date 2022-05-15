@@ -34,7 +34,7 @@ if(settings['headless']):
     chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
 try:
-    driver.get("https://www.myrta.com/wps/myportal/extvp/myrta/")
+    driver.get("https://www.myrta.com/wps/poc/extvp?uri=urlresolver:loginredirect")
     driver.find_element(By.ID, "widget_cardNumber").send_keys(
         settings['username'])
     driver.find_element(By.ID, "widget_password").send_keys(
