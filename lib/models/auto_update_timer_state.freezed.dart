@@ -12,30 +12,7 @@ part of 'auto_update_timer_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AutoUpdateTimerStateTearOff {
-  const _$AutoUpdateTimerStateTearOff();
-
-  _AutoUpdateTimerState call(
-      {bool enabled = false,
-      int interval = 180,
-      int? timeTillNextUpdate,
-      int min = 1 * 60,
-      int max = 120 * 60}) {
-    return _AutoUpdateTimerState(
-      enabled: enabled,
-      interval: interval,
-      timeTillNextUpdate: timeTillNextUpdate,
-      min: min,
-      max: max,
-    );
-  }
-}
-
-/// @nodoc
-const $AutoUpdateTimerState = _$AutoUpdateTimerStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AutoUpdateTimerState {
@@ -102,26 +79,26 @@ class _$AutoUpdateTimerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AutoUpdateTimerStateCopyWith<$Res>
+abstract class _$$_AutoUpdateTimerStateCopyWith<$Res>
     implements $AutoUpdateTimerStateCopyWith<$Res> {
-  factory _$AutoUpdateTimerStateCopyWith(_AutoUpdateTimerState value,
-          $Res Function(_AutoUpdateTimerState) then) =
-      __$AutoUpdateTimerStateCopyWithImpl<$Res>;
+  factory _$$_AutoUpdateTimerStateCopyWith(_$_AutoUpdateTimerState value,
+          $Res Function(_$_AutoUpdateTimerState) then) =
+      __$$_AutoUpdateTimerStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool enabled, int interval, int? timeTillNextUpdate, int min, int max});
 }
 
 /// @nodoc
-class __$AutoUpdateTimerStateCopyWithImpl<$Res>
+class __$$_AutoUpdateTimerStateCopyWithImpl<$Res>
     extends _$AutoUpdateTimerStateCopyWithImpl<$Res>
-    implements _$AutoUpdateTimerStateCopyWith<$Res> {
-  __$AutoUpdateTimerStateCopyWithImpl(
-      _AutoUpdateTimerState _value, $Res Function(_AutoUpdateTimerState) _then)
-      : super(_value, (v) => _then(v as _AutoUpdateTimerState));
+    implements _$$_AutoUpdateTimerStateCopyWith<$Res> {
+  __$$_AutoUpdateTimerStateCopyWithImpl(_$_AutoUpdateTimerState _value,
+      $Res Function(_$_AutoUpdateTimerState) _then)
+      : super(_value, (v) => _then(v as _$_AutoUpdateTimerState));
 
   @override
-  _AutoUpdateTimerState get _value => super._value as _AutoUpdateTimerState;
+  _$_AutoUpdateTimerState get _value => super._value as _$_AutoUpdateTimerState;
 
   @override
   $Res call({
@@ -131,7 +108,7 @@ class __$AutoUpdateTimerStateCopyWithImpl<$Res>
     Object? min = freezed,
     Object? max = freezed,
   }) {
-    return _then(_AutoUpdateTimerState(
+    return _then(_$_AutoUpdateTimerState(
       enabled: enabled == freezed
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
@@ -167,19 +144,19 @@ class _$_AutoUpdateTimerState extends _AutoUpdateTimerState {
       this.max = 120 * 60})
       : super._();
 
-  @JsonKey()
   @override
+  @JsonKey()
   final bool enabled;
-  @JsonKey()
   @override
+  @JsonKey()
   final int interval;
   @override
   final int? timeTillNextUpdate;
-  @JsonKey()
   @override
+  @JsonKey()
   final int min;
-  @JsonKey()
   @override
+  @JsonKey()
   final int max;
 
   @override
@@ -191,7 +168,7 @@ class _$_AutoUpdateTimerState extends _AutoUpdateTimerState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AutoUpdateTimerState &&
+            other is _$_AutoUpdateTimerState &&
             const DeepCollectionEquality().equals(other.enabled, enabled) &&
             const DeepCollectionEquality().equals(other.interval, interval) &&
             const DeepCollectionEquality()
@@ -211,32 +188,32 @@ class _$_AutoUpdateTimerState extends _AutoUpdateTimerState {
 
   @JsonKey(ignore: true)
   @override
-  _$AutoUpdateTimerStateCopyWith<_AutoUpdateTimerState> get copyWith =>
-      __$AutoUpdateTimerStateCopyWithImpl<_AutoUpdateTimerState>(
+  _$$_AutoUpdateTimerStateCopyWith<_$_AutoUpdateTimerState> get copyWith =>
+      __$$_AutoUpdateTimerStateCopyWithImpl<_$_AutoUpdateTimerState>(
           this, _$identity);
 }
 
 abstract class _AutoUpdateTimerState extends AutoUpdateTimerState {
   const factory _AutoUpdateTimerState(
-      {bool enabled,
-      int interval,
-      int? timeTillNextUpdate,
-      int min,
-      int max}) = _$_AutoUpdateTimerState;
+      {final bool enabled,
+      final int interval,
+      final int? timeTillNextUpdate,
+      final int min,
+      final int max}) = _$_AutoUpdateTimerState;
   const _AutoUpdateTimerState._() : super._();
 
   @override
-  bool get enabled;
+  bool get enabled => throw _privateConstructorUsedError;
   @override
-  int get interval;
+  int get interval => throw _privateConstructorUsedError;
   @override
-  int? get timeTillNextUpdate;
+  int? get timeTillNextUpdate => throw _privateConstructorUsedError;
   @override
-  int get min;
+  int get min => throw _privateConstructorUsedError;
   @override
-  int get max;
+  int get max => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AutoUpdateTimerStateCopyWith<_AutoUpdateTimerState> get copyWith =>
+  _$$_AutoUpdateTimerStateCopyWith<_$_AutoUpdateTimerState> get copyWith =>
       throw _privateConstructorUsedError;
 }

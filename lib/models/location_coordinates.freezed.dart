@@ -12,23 +12,7 @@ part of 'location_coordinates.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LocationCoordinatesTearOff {
-  const _$LocationCoordinatesTearOff();
-
-  _LocationCoordinates call(
-      {required double latitude, required double longitude}) {
-    return _LocationCoordinates(
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-}
-
-/// @nodoc
-const $LocationCoordinates = _$LocationCoordinatesTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LocationCoordinates {
@@ -76,32 +60,32 @@ class _$LocationCoordinatesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LocationCoordinatesCopyWith<$Res>
+abstract class _$$_LocationCoordinatesCopyWith<$Res>
     implements $LocationCoordinatesCopyWith<$Res> {
-  factory _$LocationCoordinatesCopyWith(_LocationCoordinates value,
-          $Res Function(_LocationCoordinates) then) =
-      __$LocationCoordinatesCopyWithImpl<$Res>;
+  factory _$$_LocationCoordinatesCopyWith(_$_LocationCoordinates value,
+          $Res Function(_$_LocationCoordinates) then) =
+      __$$_LocationCoordinatesCopyWithImpl<$Res>;
   @override
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$LocationCoordinatesCopyWithImpl<$Res>
+class __$$_LocationCoordinatesCopyWithImpl<$Res>
     extends _$LocationCoordinatesCopyWithImpl<$Res>
-    implements _$LocationCoordinatesCopyWith<$Res> {
-  __$LocationCoordinatesCopyWithImpl(
-      _LocationCoordinates _value, $Res Function(_LocationCoordinates) _then)
-      : super(_value, (v) => _then(v as _LocationCoordinates));
+    implements _$$_LocationCoordinatesCopyWith<$Res> {
+  __$$_LocationCoordinatesCopyWithImpl(_$_LocationCoordinates _value,
+      $Res Function(_$_LocationCoordinates) _then)
+      : super(_value, (v) => _then(v as _$_LocationCoordinates));
 
   @override
-  _LocationCoordinates get _value => super._value as _LocationCoordinates;
+  _$_LocationCoordinates get _value => super._value as _$_LocationCoordinates;
 
   @override
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
-    return _then(_LocationCoordinates(
+    return _then(_$_LocationCoordinates(
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -135,7 +119,7 @@ class _$_LocationCoordinates extends _LocationCoordinates {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LocationCoordinates &&
+            other is _$_LocationCoordinates &&
             const DeepCollectionEquality().equals(other.latitude, latitude) &&
             const DeepCollectionEquality().equals(other.longitude, longitude));
   }
@@ -148,23 +132,23 @@ class _$_LocationCoordinates extends _LocationCoordinates {
 
   @JsonKey(ignore: true)
   @override
-  _$LocationCoordinatesCopyWith<_LocationCoordinates> get copyWith =>
-      __$LocationCoordinatesCopyWithImpl<_LocationCoordinates>(
+  _$$_LocationCoordinatesCopyWith<_$_LocationCoordinates> get copyWith =>
+      __$$_LocationCoordinatesCopyWithImpl<_$_LocationCoordinates>(
           this, _$identity);
 }
 
 abstract class _LocationCoordinates extends LocationCoordinates {
   const factory _LocationCoordinates(
-      {required double latitude,
-      required double longitude}) = _$_LocationCoordinates;
+      {required final double latitude,
+      required final double longitude}) = _$_LocationCoordinates;
   const _LocationCoordinates._() : super._();
 
   @override
-  double get latitude;
+  double get latitude => throw _privateConstructorUsedError;
   @override
-  double get longitude;
+  double get longitude => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LocationCoordinatesCopyWith<_LocationCoordinates> get copyWith =>
+  _$$_LocationCoordinatesCopyWith<_$_LocationCoordinates> get copyWith =>
       throw _privateConstructorUsedError;
 }

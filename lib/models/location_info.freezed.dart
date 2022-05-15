@@ -12,30 +12,11 @@ part of 'location_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 LocationInfo _$LocationInfoFromJson(Map<String, dynamic> json) {
   return _Location.fromJson(json);
 }
-
-/// @nodoc
-class _$LocationInfoTearOff {
-  const _$LocationInfoTearOff();
-
-  _Location call({required String location, Result? result}) {
-    return _Location(
-      location: location,
-      result: result,
-    );
-  }
-
-  LocationInfo fromJson(Map<String, Object?> json) {
-    return LocationInfo.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $LocationInfo = _$LocationInfoTearOff();
 
 /// @nodoc
 mixin _$LocationInfo {
@@ -96,9 +77,11 @@ class _$LocationInfoCopyWithImpl<$Res> implements $LocationInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LocationCopyWith<$Res> implements $LocationInfoCopyWith<$Res> {
-  factory _$LocationCopyWith(_Location value, $Res Function(_Location) then) =
-      __$LocationCopyWithImpl<$Res>;
+abstract class _$$_LocationCopyWith<$Res>
+    implements $LocationInfoCopyWith<$Res> {
+  factory _$$_LocationCopyWith(
+          _$_Location value, $Res Function(_$_Location) then) =
+      __$$_LocationCopyWithImpl<$Res>;
   @override
   $Res call({String location, Result? result});
 
@@ -107,20 +90,21 @@ abstract class _$LocationCopyWith<$Res> implements $LocationInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LocationCopyWithImpl<$Res> extends _$LocationInfoCopyWithImpl<$Res>
-    implements _$LocationCopyWith<$Res> {
-  __$LocationCopyWithImpl(_Location _value, $Res Function(_Location) _then)
-      : super(_value, (v) => _then(v as _Location));
+class __$$_LocationCopyWithImpl<$Res> extends _$LocationInfoCopyWithImpl<$Res>
+    implements _$$_LocationCopyWith<$Res> {
+  __$$_LocationCopyWithImpl(
+      _$_Location _value, $Res Function(_$_Location) _then)
+      : super(_value, (v) => _then(v as _$_Location));
 
   @override
-  _Location get _value => super._value as _Location;
+  _$_Location get _value => super._value as _$_Location;
 
   @override
   $Res call({
     Object? location = freezed,
     Object? result = freezed,
   }) {
-    return _then(_Location(
+    return _then(_$_Location(
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -155,11 +139,12 @@ class _$_Location implements _Location {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Location &&
+            other is _$_Location &&
             const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.result, result));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -168,8 +153,8 @@ class _$_Location implements _Location {
 
   @JsonKey(ignore: true)
   @override
-  _$LocationCopyWith<_Location> get copyWith =>
-      __$LocationCopyWithImpl<_Location>(this, _$identity);
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
+      __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -178,42 +163,24 @@ class _$_Location implements _Location {
 }
 
 abstract class _Location implements LocationInfo {
-  const factory _Location({required String location, Result? result}) =
-      _$_Location;
+  const factory _Location(
+      {required final String location, final Result? result}) = _$_Location;
 
   factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
   @override
-  String get location;
+  String get location => throw _privateConstructorUsedError;
   @override
-  Result? get result;
+  Result? get result => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LocationCopyWith<_Location> get copyWith =>
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Result _$ResultFromJson(Map<String, dynamic> json) {
   return _Result.fromJson(json);
 }
-
-/// @nodoc
-class _$ResultTearOff {
-  const _$ResultTearOff();
-
-  _Result call({required Ajaxresult ajaxresult}) {
-    return _Result(
-      ajaxresult: ajaxresult,
-    );
-  }
-
-  Result fromJson(Map<String, Object?> json) {
-    return Result.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Result = _$ResultTearOff();
 
 /// @nodoc
 mixin _$Result {
@@ -262,9 +229,9 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
-  factory _$ResultCopyWith(_Result value, $Res Function(_Result) then) =
-      __$ResultCopyWithImpl<$Res>;
+abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
+  factory _$$_ResultCopyWith(_$_Result value, $Res Function(_$_Result) then) =
+      __$$_ResultCopyWithImpl<$Res>;
   @override
   $Res call({Ajaxresult ajaxresult});
 
@@ -273,19 +240,19 @@ abstract class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
-    implements _$ResultCopyWith<$Res> {
-  __$ResultCopyWithImpl(_Result _value, $Res Function(_Result) _then)
-      : super(_value, (v) => _then(v as _Result));
+class __$$_ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
+    implements _$$_ResultCopyWith<$Res> {
+  __$$_ResultCopyWithImpl(_$_Result _value, $Res Function(_$_Result) _then)
+      : super(_value, (v) => _then(v as _$_Result));
 
   @override
-  _Result get _value => super._value as _Result;
+  _$_Result get _value => super._value as _$_Result;
 
   @override
   $Res call({
     Object? ajaxresult = freezed,
   }) {
-    return _then(_Result(
+    return _then(_$_Result(
       ajaxresult: ajaxresult == freezed
           ? _value.ajaxresult
           : ajaxresult // ignore: cast_nullable_to_non_nullable
@@ -314,19 +281,20 @@ class _$_Result implements _Result {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Result &&
+            other is _$_Result &&
             const DeepCollectionEquality()
                 .equals(other.ajaxresult, ajaxresult));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(ajaxresult));
 
   @JsonKey(ignore: true)
   @override
-  _$ResultCopyWith<_Result> get copyWith =>
-      __$ResultCopyWithImpl<_Result>(this, _$identity);
+  _$$_ResultCopyWith<_$_Result> get copyWith =>
+      __$$_ResultCopyWithImpl<_$_Result>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -335,38 +303,21 @@ class _$_Result implements _Result {
 }
 
 abstract class _Result implements Result {
-  const factory _Result({required Ajaxresult ajaxresult}) = _$_Result;
+  const factory _Result({required final Ajaxresult ajaxresult}) = _$_Result;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$_Result.fromJson;
 
   @override
-  Ajaxresult get ajaxresult;
+  Ajaxresult get ajaxresult => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ResultCopyWith<_Result> get copyWith => throw _privateConstructorUsedError;
+  _$$_ResultCopyWith<_$_Result> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Ajaxresult _$AjaxresultFromJson(Map<String, dynamic> json) {
   return _Ajaxresult.fromJson(json);
 }
-
-/// @nodoc
-class _$AjaxresultTearOff {
-  const _$AjaxresultTearOff();
-
-  _Ajaxresult call({Slots? slots}) {
-    return _Ajaxresult(
-      slots: slots,
-    );
-  }
-
-  Ajaxresult fromJson(Map<String, Object?> json) {
-    return Ajaxresult.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Ajaxresult = _$AjaxresultTearOff();
 
 /// @nodoc
 mixin _$Ajaxresult {
@@ -421,10 +372,11 @@ class _$AjaxresultCopyWithImpl<$Res> implements $AjaxresultCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AjaxresultCopyWith<$Res> implements $AjaxresultCopyWith<$Res> {
-  factory _$AjaxresultCopyWith(
-          _Ajaxresult value, $Res Function(_Ajaxresult) then) =
-      __$AjaxresultCopyWithImpl<$Res>;
+abstract class _$$_AjaxresultCopyWith<$Res>
+    implements $AjaxresultCopyWith<$Res> {
+  factory _$$_AjaxresultCopyWith(
+          _$_Ajaxresult value, $Res Function(_$_Ajaxresult) then) =
+      __$$_AjaxresultCopyWithImpl<$Res>;
   @override
   $Res call({Slots? slots});
 
@@ -433,20 +385,20 @@ abstract class _$AjaxresultCopyWith<$Res> implements $AjaxresultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AjaxresultCopyWithImpl<$Res> extends _$AjaxresultCopyWithImpl<$Res>
-    implements _$AjaxresultCopyWith<$Res> {
-  __$AjaxresultCopyWithImpl(
-      _Ajaxresult _value, $Res Function(_Ajaxresult) _then)
-      : super(_value, (v) => _then(v as _Ajaxresult));
+class __$$_AjaxresultCopyWithImpl<$Res> extends _$AjaxresultCopyWithImpl<$Res>
+    implements _$$_AjaxresultCopyWith<$Res> {
+  __$$_AjaxresultCopyWithImpl(
+      _$_Ajaxresult _value, $Res Function(_$_Ajaxresult) _then)
+      : super(_value, (v) => _then(v as _$_Ajaxresult));
 
   @override
-  _Ajaxresult get _value => super._value as _Ajaxresult;
+  _$_Ajaxresult get _value => super._value as _$_Ajaxresult;
 
   @override
   $Res call({
     Object? slots = freezed,
   }) {
-    return _then(_Ajaxresult(
+    return _then(_$_Ajaxresult(
       slots: slots == freezed
           ? _value.slots
           : slots // ignore: cast_nullable_to_non_nullable
@@ -475,18 +427,19 @@ class _$_Ajaxresult implements _Ajaxresult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Ajaxresult &&
+            other is _$_Ajaxresult &&
             const DeepCollectionEquality().equals(other.slots, slots));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(slots));
 
   @JsonKey(ignore: true)
   @override
-  _$AjaxresultCopyWith<_Ajaxresult> get copyWith =>
-      __$AjaxresultCopyWithImpl<_Ajaxresult>(this, _$identity);
+  _$$_AjaxresultCopyWith<_$_Ajaxresult> get copyWith =>
+      __$$_AjaxresultCopyWithImpl<_$_Ajaxresult>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -495,43 +448,22 @@ class _$_Ajaxresult implements _Ajaxresult {
 }
 
 abstract class _Ajaxresult implements Ajaxresult {
-  const factory _Ajaxresult({Slots? slots}) = _$_Ajaxresult;
+  const factory _Ajaxresult({final Slots? slots}) = _$_Ajaxresult;
 
   factory _Ajaxresult.fromJson(Map<String, dynamic> json) =
       _$_Ajaxresult.fromJson;
 
   @override
-  Slots? get slots;
+  Slots? get slots => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AjaxresultCopyWith<_Ajaxresult> get copyWith =>
+  _$$_AjaxresultCopyWith<_$_Ajaxresult> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Slots _$SlotsFromJson(Map<String, dynamic> json) {
   return _Slots.fromJson(json);
 }
-
-/// @nodoc
-class _$SlotsTearOff {
-  const _$SlotsTearOff();
-
-  _Slots call(
-      {List<ListTimeSlot> listTimeSlot = const [],
-      @CustomDateTimeConverter() DateTime? nextAvailableDate}) {
-    return _Slots(
-      listTimeSlot: listTimeSlot,
-      nextAvailableDate: nextAvailableDate,
-    );
-  }
-
-  Slots fromJson(Map<String, Object?> json) {
-    return Slots.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Slots = _$SlotsTearOff();
 
 /// @nodoc
 mixin _$Slots {
@@ -580,9 +512,9 @@ class _$SlotsCopyWithImpl<$Res> implements $SlotsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SlotsCopyWith<$Res> implements $SlotsCopyWith<$Res> {
-  factory _$SlotsCopyWith(_Slots value, $Res Function(_Slots) then) =
-      __$SlotsCopyWithImpl<$Res>;
+abstract class _$$_SlotsCopyWith<$Res> implements $SlotsCopyWith<$Res> {
+  factory _$$_SlotsCopyWith(_$_Slots value, $Res Function(_$_Slots) then) =
+      __$$_SlotsCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<ListTimeSlot> listTimeSlot,
@@ -590,22 +522,22 @@ abstract class _$SlotsCopyWith<$Res> implements $SlotsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SlotsCopyWithImpl<$Res> extends _$SlotsCopyWithImpl<$Res>
-    implements _$SlotsCopyWith<$Res> {
-  __$SlotsCopyWithImpl(_Slots _value, $Res Function(_Slots) _then)
-      : super(_value, (v) => _then(v as _Slots));
+class __$$_SlotsCopyWithImpl<$Res> extends _$SlotsCopyWithImpl<$Res>
+    implements _$$_SlotsCopyWith<$Res> {
+  __$$_SlotsCopyWithImpl(_$_Slots _value, $Res Function(_$_Slots) _then)
+      : super(_value, (v) => _then(v as _$_Slots));
 
   @override
-  _Slots get _value => super._value as _Slots;
+  _$_Slots get _value => super._value as _$_Slots;
 
   @override
   $Res call({
     Object? listTimeSlot = freezed,
     Object? nextAvailableDate = freezed,
   }) {
-    return _then(_Slots(
+    return _then(_$_Slots(
       listTimeSlot: listTimeSlot == freezed
-          ? _value.listTimeSlot
+          ? _value._listTimeSlot
           : listTimeSlot // ignore: cast_nullable_to_non_nullable
               as List<ListTimeSlot>,
       nextAvailableDate: nextAvailableDate == freezed
@@ -620,15 +552,21 @@ class __$SlotsCopyWithImpl<$Res> extends _$SlotsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Slots implements _Slots {
   const _$_Slots(
-      {this.listTimeSlot = const [],
-      @CustomDateTimeConverter() this.nextAvailableDate});
+      {final List<ListTimeSlot> listTimeSlot = const [],
+      @CustomDateTimeConverter() this.nextAvailableDate})
+      : _listTimeSlot = listTimeSlot;
 
   factory _$_Slots.fromJson(Map<String, dynamic> json) =>
       _$$_SlotsFromJson(json);
 
-  @JsonKey()
+  final List<ListTimeSlot> _listTimeSlot;
   @override
-  final List<ListTimeSlot> listTimeSlot;
+  @JsonKey()
+  List<ListTimeSlot> get listTimeSlot {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listTimeSlot);
+  }
+
   @override
   @CustomDateTimeConverter()
   final DateTime? nextAvailableDate;
@@ -642,23 +580,24 @@ class _$_Slots implements _Slots {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Slots &&
+            other is _$_Slots &&
             const DeepCollectionEquality()
-                .equals(other.listTimeSlot, listTimeSlot) &&
+                .equals(other._listTimeSlot, _listTimeSlot) &&
             const DeepCollectionEquality()
                 .equals(other.nextAvailableDate, nextAvailableDate));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(listTimeSlot),
+      const DeepCollectionEquality().hash(_listTimeSlot),
       const DeepCollectionEquality().hash(nextAvailableDate));
 
   @JsonKey(ignore: true)
   @override
-  _$SlotsCopyWith<_Slots> get copyWith =>
-      __$SlotsCopyWithImpl<_Slots>(this, _$identity);
+  _$$_SlotsCopyWith<_$_Slots> get copyWith =>
+      __$$_SlotsCopyWithImpl<_$_Slots>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -668,47 +607,25 @@ class _$_Slots implements _Slots {
 
 abstract class _Slots implements Slots {
   const factory _Slots(
-      {List<ListTimeSlot> listTimeSlot,
-      @CustomDateTimeConverter() DateTime? nextAvailableDate}) = _$_Slots;
+      {final List<ListTimeSlot> listTimeSlot,
+      @CustomDateTimeConverter() final DateTime? nextAvailableDate}) = _$_Slots;
 
   factory _Slots.fromJson(Map<String, dynamic> json) = _$_Slots.fromJson;
 
   @override
-  List<ListTimeSlot> get listTimeSlot;
+  List<ListTimeSlot> get listTimeSlot => throw _privateConstructorUsedError;
   @override
   @CustomDateTimeConverter()
-  DateTime? get nextAvailableDate;
+  DateTime? get nextAvailableDate => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SlotsCopyWith<_Slots> get copyWith => throw _privateConstructorUsedError;
+  _$$_SlotsCopyWith<_$_Slots> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ListTimeSlot _$ListTimeSlotFromJson(Map<String, dynamic> json) {
   return _ListTimeSlot.fromJson(json);
 }
-
-/// @nodoc
-class _$ListTimeSlotTearOff {
-  const _$ListTimeSlotTearOff();
-
-  _ListTimeSlot call(
-      {required bool availability,
-      int? slotNumber,
-      @CustomDateTimeConverter() DateTime? startTime}) {
-    return _ListTimeSlot(
-      availability: availability,
-      slotNumber: slotNumber,
-      startTime: startTime,
-    );
-  }
-
-  ListTimeSlot fromJson(Map<String, Object?> json) {
-    return ListTimeSlot.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ListTimeSlot = _$ListTimeSlotTearOff();
 
 /// @nodoc
 mixin _$ListTimeSlot {
@@ -766,11 +683,11 @@ class _$ListTimeSlotCopyWithImpl<$Res> implements $ListTimeSlotCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ListTimeSlotCopyWith<$Res>
+abstract class _$$_ListTimeSlotCopyWith<$Res>
     implements $ListTimeSlotCopyWith<$Res> {
-  factory _$ListTimeSlotCopyWith(
-          _ListTimeSlot value, $Res Function(_ListTimeSlot) then) =
-      __$ListTimeSlotCopyWithImpl<$Res>;
+  factory _$$_ListTimeSlotCopyWith(
+          _$_ListTimeSlot value, $Res Function(_$_ListTimeSlot) then) =
+      __$$_ListTimeSlotCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool availability,
@@ -779,14 +696,15 @@ abstract class _$ListTimeSlotCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ListTimeSlotCopyWithImpl<$Res> extends _$ListTimeSlotCopyWithImpl<$Res>
-    implements _$ListTimeSlotCopyWith<$Res> {
-  __$ListTimeSlotCopyWithImpl(
-      _ListTimeSlot _value, $Res Function(_ListTimeSlot) _then)
-      : super(_value, (v) => _then(v as _ListTimeSlot));
+class __$$_ListTimeSlotCopyWithImpl<$Res>
+    extends _$ListTimeSlotCopyWithImpl<$Res>
+    implements _$$_ListTimeSlotCopyWith<$Res> {
+  __$$_ListTimeSlotCopyWithImpl(
+      _$_ListTimeSlot _value, $Res Function(_$_ListTimeSlot) _then)
+      : super(_value, (v) => _then(v as _$_ListTimeSlot));
 
   @override
-  _ListTimeSlot get _value => super._value as _ListTimeSlot;
+  _$_ListTimeSlot get _value => super._value as _$_ListTimeSlot;
 
   @override
   $Res call({
@@ -794,7 +712,7 @@ class __$ListTimeSlotCopyWithImpl<$Res> extends _$ListTimeSlotCopyWithImpl<$Res>
     Object? slotNumber = freezed,
     Object? startTime = freezed,
   }) {
-    return _then(_ListTimeSlot(
+    return _then(_$_ListTimeSlot(
       availability: availability == freezed
           ? _value.availability
           : availability // ignore: cast_nullable_to_non_nullable
@@ -839,7 +757,7 @@ class _$_ListTimeSlot implements _ListTimeSlot {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ListTimeSlot &&
+            other is _$_ListTimeSlot &&
             const DeepCollectionEquality()
                 .equals(other.availability, availability) &&
             const DeepCollectionEquality()
@@ -847,6 +765,7 @@ class _$_ListTimeSlot implements _ListTimeSlot {
             const DeepCollectionEquality().equals(other.startTime, startTime));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -856,8 +775,8 @@ class _$_ListTimeSlot implements _ListTimeSlot {
 
   @JsonKey(ignore: true)
   @override
-  _$ListTimeSlotCopyWith<_ListTimeSlot> get copyWith =>
-      __$ListTimeSlotCopyWithImpl<_ListTimeSlot>(this, _$identity);
+  _$$_ListTimeSlotCopyWith<_$_ListTimeSlot> get copyWith =>
+      __$$_ListTimeSlotCopyWithImpl<_$_ListTimeSlot>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -867,22 +786,22 @@ class _$_ListTimeSlot implements _ListTimeSlot {
 
 abstract class _ListTimeSlot implements ListTimeSlot {
   const factory _ListTimeSlot(
-      {required bool availability,
-      int? slotNumber,
-      @CustomDateTimeConverter() DateTime? startTime}) = _$_ListTimeSlot;
+      {required final bool availability,
+      final int? slotNumber,
+      @CustomDateTimeConverter() final DateTime? startTime}) = _$_ListTimeSlot;
 
   factory _ListTimeSlot.fromJson(Map<String, dynamic> json) =
       _$_ListTimeSlot.fromJson;
 
   @override
-  bool get availability;
+  bool get availability => throw _privateConstructorUsedError;
   @override
-  int? get slotNumber;
+  int? get slotNumber => throw _privateConstructorUsedError;
   @override
   @CustomDateTimeConverter()
-  DateTime? get startTime;
+  DateTime? get startTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ListTimeSlotCopyWith<_ListTimeSlot> get copyWith =>
+  _$$_ListTimeSlotCopyWith<_$_ListTimeSlot> get copyWith =>
       throw _privateConstructorUsedError;
 }

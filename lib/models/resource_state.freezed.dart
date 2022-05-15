@@ -12,26 +12,7 @@ part of 'resource_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ResourceStateTearOff {
-  const _$ResourceStateTearOff();
-
-  _ResourceState call(
-      {required String scriptFilePath,
-      required String settingsFilePath,
-      required String applicationSupportDirectoryPath}) {
-    return _ResourceState(
-      scriptFilePath: scriptFilePath,
-      settingsFilePath: settingsFilePath,
-      applicationSupportDirectoryPath: applicationSupportDirectoryPath,
-    );
-  }
-}
-
-/// @nodoc
-const $ResourceState = _$ResourceStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ResourceState {
@@ -90,11 +71,11 @@ class _$ResourceStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ResourceStateCopyWith<$Res>
+abstract class _$$_ResourceStateCopyWith<$Res>
     implements $ResourceStateCopyWith<$Res> {
-  factory _$ResourceStateCopyWith(
-          _ResourceState value, $Res Function(_ResourceState) then) =
-      __$ResourceStateCopyWithImpl<$Res>;
+  factory _$$_ResourceStateCopyWith(
+          _$_ResourceState value, $Res Function(_$_ResourceState) then) =
+      __$$_ResourceStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String scriptFilePath,
@@ -103,15 +84,15 @@ abstract class _$ResourceStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ResourceStateCopyWithImpl<$Res>
+class __$$_ResourceStateCopyWithImpl<$Res>
     extends _$ResourceStateCopyWithImpl<$Res>
-    implements _$ResourceStateCopyWith<$Res> {
-  __$ResourceStateCopyWithImpl(
-      _ResourceState _value, $Res Function(_ResourceState) _then)
-      : super(_value, (v) => _then(v as _ResourceState));
+    implements _$$_ResourceStateCopyWith<$Res> {
+  __$$_ResourceStateCopyWithImpl(
+      _$_ResourceState _value, $Res Function(_$_ResourceState) _then)
+      : super(_value, (v) => _then(v as _$_ResourceState));
 
   @override
-  _ResourceState get _value => super._value as _ResourceState;
+  _$_ResourceState get _value => super._value as _$_ResourceState;
 
   @override
   $Res call({
@@ -119,7 +100,7 @@ class __$ResourceStateCopyWithImpl<$Res>
     Object? settingsFilePath = freezed,
     Object? applicationSupportDirectoryPath = freezed,
   }) {
-    return _then(_ResourceState(
+    return _then(_$_ResourceState(
       scriptFilePath: scriptFilePath == freezed
           ? _value.scriptFilePath
           : scriptFilePath // ignore: cast_nullable_to_non_nullable
@@ -161,7 +142,7 @@ class _$_ResourceState implements _ResourceState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ResourceState &&
+            other is _$_ResourceState &&
             const DeepCollectionEquality()
                 .equals(other.scriptFilePath, scriptFilePath) &&
             const DeepCollectionEquality()
@@ -180,24 +161,26 @@ class _$_ResourceState implements _ResourceState {
 
   @JsonKey(ignore: true)
   @override
-  _$ResourceStateCopyWith<_ResourceState> get copyWith =>
-      __$ResourceStateCopyWithImpl<_ResourceState>(this, _$identity);
+  _$$_ResourceStateCopyWith<_$_ResourceState> get copyWith =>
+      __$$_ResourceStateCopyWithImpl<_$_ResourceState>(this, _$identity);
 }
 
 abstract class _ResourceState implements ResourceState {
   const factory _ResourceState(
-      {required String scriptFilePath,
-      required String settingsFilePath,
-      required String applicationSupportDirectoryPath}) = _$_ResourceState;
+          {required final String scriptFilePath,
+          required final String settingsFilePath,
+          required final String applicationSupportDirectoryPath}) =
+      _$_ResourceState;
 
   @override
-  String get scriptFilePath;
+  String get scriptFilePath => throw _privateConstructorUsedError;
   @override
-  String get settingsFilePath;
+  String get settingsFilePath => throw _privateConstructorUsedError;
   @override
-  String get applicationSupportDirectoryPath;
+  String get applicationSupportDirectoryPath =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ResourceStateCopyWith<_ResourceState> get copyWith =>
+  _$$_ResourceStateCopyWith<_$_ResourceState> get copyWith =>
       throw _privateConstructorUsedError;
 }

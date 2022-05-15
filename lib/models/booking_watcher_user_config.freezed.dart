@@ -12,32 +12,7 @@ part of 'booking_watcher_user_config.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BookingWatcherUserConfigTearOff {
-  const _$BookingWatcherUserConfigTearOff();
-
-  _BookingWatcherUserConfig call(
-      {required String recipientEmail,
-      required DateTime startPreferredDate,
-      required DateTime endPreferredDate,
-      required TimeOfDay startPreferredTime,
-      required TimeOfDay endPreferredTime,
-      List<String> preferredLocationIds = const []}) {
-    return _BookingWatcherUserConfig(
-      recipientEmail: recipientEmail,
-      startPreferredDate: startPreferredDate,
-      endPreferredDate: endPreferredDate,
-      startPreferredTime: startPreferredTime,
-      endPreferredTime: endPreferredTime,
-      preferredLocationIds: preferredLocationIds,
-    );
-  }
-}
-
-/// @nodoc
-const $BookingWatcherUserConfig = _$BookingWatcherUserConfigTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BookingWatcherUserConfig {
@@ -115,11 +90,12 @@ class _$BookingWatcherUserConfigCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BookingWatcherUserConfigCopyWith<$Res>
+abstract class _$$_BookingWatcherUserConfigCopyWith<$Res>
     implements $BookingWatcherUserConfigCopyWith<$Res> {
-  factory _$BookingWatcherUserConfigCopyWith(_BookingWatcherUserConfig value,
-          $Res Function(_BookingWatcherUserConfig) then) =
-      __$BookingWatcherUserConfigCopyWithImpl<$Res>;
+  factory _$$_BookingWatcherUserConfigCopyWith(
+          _$_BookingWatcherUserConfig value,
+          $Res Function(_$_BookingWatcherUserConfig) then) =
+      __$$_BookingWatcherUserConfigCopyWithImpl<$Res>;
   @override
   $Res call(
       {String recipientEmail,
@@ -131,16 +107,16 @@ abstract class _$BookingWatcherUserConfigCopyWith<$Res>
 }
 
 /// @nodoc
-class __$BookingWatcherUserConfigCopyWithImpl<$Res>
+class __$$_BookingWatcherUserConfigCopyWithImpl<$Res>
     extends _$BookingWatcherUserConfigCopyWithImpl<$Res>
-    implements _$BookingWatcherUserConfigCopyWith<$Res> {
-  __$BookingWatcherUserConfigCopyWithImpl(_BookingWatcherUserConfig _value,
-      $Res Function(_BookingWatcherUserConfig) _then)
-      : super(_value, (v) => _then(v as _BookingWatcherUserConfig));
+    implements _$$_BookingWatcherUserConfigCopyWith<$Res> {
+  __$$_BookingWatcherUserConfigCopyWithImpl(_$_BookingWatcherUserConfig _value,
+      $Res Function(_$_BookingWatcherUserConfig) _then)
+      : super(_value, (v) => _then(v as _$_BookingWatcherUserConfig));
 
   @override
-  _BookingWatcherUserConfig get _value =>
-      super._value as _BookingWatcherUserConfig;
+  _$_BookingWatcherUserConfig get _value =>
+      super._value as _$_BookingWatcherUserConfig;
 
   @override
   $Res call({
@@ -151,7 +127,7 @@ class __$BookingWatcherUserConfigCopyWithImpl<$Res>
     Object? endPreferredTime = freezed,
     Object? preferredLocationIds = freezed,
   }) {
-    return _then(_BookingWatcherUserConfig(
+    return _then(_$_BookingWatcherUserConfig(
       recipientEmail: recipientEmail == freezed
           ? _value.recipientEmail
           : recipientEmail // ignore: cast_nullable_to_non_nullable
@@ -173,7 +149,7 @@ class __$BookingWatcherUserConfigCopyWithImpl<$Res>
           : endPreferredTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay,
       preferredLocationIds: preferredLocationIds == freezed
-          ? _value.preferredLocationIds
+          ? _value._preferredLocationIds
           : preferredLocationIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -189,8 +165,9 @@ class _$_BookingWatcherUserConfig extends _BookingWatcherUserConfig {
       required this.endPreferredDate,
       required this.startPreferredTime,
       required this.endPreferredTime,
-      this.preferredLocationIds = const []})
-      : super._();
+      final List<String> preferredLocationIds = const []})
+      : _preferredLocationIds = preferredLocationIds,
+        super._();
 
   @override
   final String recipientEmail;
@@ -202,9 +179,13 @@ class _$_BookingWatcherUserConfig extends _BookingWatcherUserConfig {
   final TimeOfDay startPreferredTime;
   @override
   final TimeOfDay endPreferredTime;
-  @JsonKey()
+  final List<String> _preferredLocationIds;
   @override
-  final List<String> preferredLocationIds;
+  @JsonKey()
+  List<String> get preferredLocationIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_preferredLocationIds);
+  }
 
   @override
   String toString() {
@@ -215,7 +196,7 @@ class _$_BookingWatcherUserConfig extends _BookingWatcherUserConfig {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BookingWatcherUserConfig &&
+            other is _$_BookingWatcherUserConfig &&
             const DeepCollectionEquality()
                 .equals(other.recipientEmail, recipientEmail) &&
             const DeepCollectionEquality()
@@ -227,7 +208,7 @@ class _$_BookingWatcherUserConfig extends _BookingWatcherUserConfig {
             const DeepCollectionEquality()
                 .equals(other.endPreferredTime, endPreferredTime) &&
             const DeepCollectionEquality()
-                .equals(other.preferredLocationIds, preferredLocationIds));
+                .equals(other._preferredLocationIds, _preferredLocationIds));
   }
 
   @override
@@ -238,39 +219,39 @@ class _$_BookingWatcherUserConfig extends _BookingWatcherUserConfig {
       const DeepCollectionEquality().hash(endPreferredDate),
       const DeepCollectionEquality().hash(startPreferredTime),
       const DeepCollectionEquality().hash(endPreferredTime),
-      const DeepCollectionEquality().hash(preferredLocationIds));
+      const DeepCollectionEquality().hash(_preferredLocationIds));
 
   @JsonKey(ignore: true)
   @override
-  _$BookingWatcherUserConfigCopyWith<_BookingWatcherUserConfig> get copyWith =>
-      __$BookingWatcherUserConfigCopyWithImpl<_BookingWatcherUserConfig>(
-          this, _$identity);
+  _$$_BookingWatcherUserConfigCopyWith<_$_BookingWatcherUserConfig>
+      get copyWith => __$$_BookingWatcherUserConfigCopyWithImpl<
+          _$_BookingWatcherUserConfig>(this, _$identity);
 }
 
 abstract class _BookingWatcherUserConfig extends BookingWatcherUserConfig {
   const factory _BookingWatcherUserConfig(
-      {required String recipientEmail,
-      required DateTime startPreferredDate,
-      required DateTime endPreferredDate,
-      required TimeOfDay startPreferredTime,
-      required TimeOfDay endPreferredTime,
-      List<String> preferredLocationIds}) = _$_BookingWatcherUserConfig;
+      {required final String recipientEmail,
+      required final DateTime startPreferredDate,
+      required final DateTime endPreferredDate,
+      required final TimeOfDay startPreferredTime,
+      required final TimeOfDay endPreferredTime,
+      final List<String> preferredLocationIds}) = _$_BookingWatcherUserConfig;
   const _BookingWatcherUserConfig._() : super._();
 
   @override
-  String get recipientEmail;
+  String get recipientEmail => throw _privateConstructorUsedError;
   @override
-  DateTime get startPreferredDate;
+  DateTime get startPreferredDate => throw _privateConstructorUsedError;
   @override
-  DateTime get endPreferredDate;
+  DateTime get endPreferredDate => throw _privateConstructorUsedError;
   @override
-  TimeOfDay get startPreferredTime;
+  TimeOfDay get startPreferredTime => throw _privateConstructorUsedError;
   @override
-  TimeOfDay get endPreferredTime;
+  TimeOfDay get endPreferredTime => throw _privateConstructorUsedError;
   @override
-  List<String> get preferredLocationIds;
+  List<String> get preferredLocationIds => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BookingWatcherUserConfigCopyWith<_BookingWatcherUserConfig> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_BookingWatcherUserConfigCopyWith<_$_BookingWatcherUserConfig>
+      get copyWith => throw _privateConstructorUsedError;
 }

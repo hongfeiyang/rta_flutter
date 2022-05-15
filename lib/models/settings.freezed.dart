@@ -12,50 +12,11 @@ part of 'settings.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Settings _$SettingsFromJson(Map<String, dynamic> json) {
   return _Settings.fromJson(json);
 }
-
-/// @nodoc
-class _$SettingsTearOff {
-  const _$SettingsTearOff();
-
-  _Settings call(
-      {int autoUpdateIntervalInMinutes = 15,
-      int numConcurrentProcess = 1,
-      bool enableAutoUpdate = false,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'password') String? password,
-      @JsonKey(name: 'python3_executable') String? python3ExePath = 'python3',
-      @JsonKey(name: 'have_booking') bool haveBooking = false,
-      @JsonKey(name: 'headless') bool headless = true,
-      @JsonKey(name: 'wait_timer') int waitTimer = 2,
-      @JsonKey(name: 'main_category') dynamic mainCategory = 'Car',
-      @JsonKey(name: 'sub_category') dynamic subCategory = 'DT'}) {
-    return _Settings(
-      autoUpdateIntervalInMinutes: autoUpdateIntervalInMinutes,
-      numConcurrentProcess: numConcurrentProcess,
-      enableAutoUpdate: enableAutoUpdate,
-      username: username,
-      password: password,
-      python3ExePath: python3ExePath,
-      haveBooking: haveBooking,
-      headless: headless,
-      waitTimer: waitTimer,
-      mainCategory: mainCategory,
-      subCategory: subCategory,
-    );
-  }
-
-  Settings fromJson(Map<String, Object?> json) {
-    return Settings.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Settings = _$SettingsTearOff();
 
 /// @nodoc
 mixin _$Settings {
@@ -175,9 +136,10 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
-  factory _$SettingsCopyWith(_Settings value, $Res Function(_Settings) then) =
-      __$SettingsCopyWithImpl<$Res>;
+abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
+  factory _$$_SettingsCopyWith(
+          _$_Settings value, $Res Function(_$_Settings) then) =
+      __$$_SettingsCopyWithImpl<$Res>;
   @override
   $Res call(
       {int autoUpdateIntervalInMinutes,
@@ -194,13 +156,14 @@ abstract class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
-    implements _$SettingsCopyWith<$Res> {
-  __$SettingsCopyWithImpl(_Settings _value, $Res Function(_Settings) _then)
-      : super(_value, (v) => _then(v as _Settings));
+class __$$_SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
+    implements _$$_SettingsCopyWith<$Res> {
+  __$$_SettingsCopyWithImpl(
+      _$_Settings _value, $Res Function(_$_Settings) _then)
+      : super(_value, (v) => _then(v as _$_Settings));
 
   @override
-  _Settings get _value => super._value as _Settings;
+  _$_Settings get _value => super._value as _$_Settings;
 
   @override
   $Res call({
@@ -216,7 +179,7 @@ class __$SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
     Object? mainCategory = freezed,
     Object? subCategory = freezed,
   }) {
-    return _then(_Settings(
+    return _then(_$_Settings(
       autoUpdateIntervalInMinutes: autoUpdateIntervalInMinutes == freezed
           ? _value.autoUpdateIntervalInMinutes
           : autoUpdateIntervalInMinutes // ignore: cast_nullable_to_non_nullable
@@ -279,14 +242,14 @@ class _$_Settings implements _Settings {
   factory _$_Settings.fromJson(Map<String, dynamic> json) =>
       _$$_SettingsFromJson(json);
 
-  @JsonKey()
   @override
+  @JsonKey()
   final int autoUpdateIntervalInMinutes;
-  @JsonKey()
   @override
+  @JsonKey()
   final int numConcurrentProcess;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool enableAutoUpdate;
   @override
   @JsonKey(name: 'username')
@@ -322,7 +285,7 @@ class _$_Settings implements _Settings {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Settings &&
+            other is _$_Settings &&
             const DeepCollectionEquality().equals(
                 other.autoUpdateIntervalInMinutes,
                 autoUpdateIntervalInMinutes) &&
@@ -344,6 +307,7 @@ class _$_Settings implements _Settings {
                 .equals(other.subCategory, subCategory));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -361,8 +325,8 @@ class _$_Settings implements _Settings {
 
   @JsonKey(ignore: true)
   @override
-  _$SettingsCopyWith<_Settings> get copyWith =>
-      __$SettingsCopyWithImpl<_Settings>(this, _$identity);
+  _$$_SettingsCopyWith<_$_Settings> get copyWith =>
+      __$$_SettingsCopyWithImpl<_$_Settings>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -372,52 +336,52 @@ class _$_Settings implements _Settings {
 
 abstract class _Settings implements Settings {
   const factory _Settings(
-      {int autoUpdateIntervalInMinutes,
-      int numConcurrentProcess,
-      bool enableAutoUpdate,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'password') String? password,
-      @JsonKey(name: 'python3_executable') String? python3ExePath,
-      @JsonKey(name: 'have_booking') bool haveBooking,
-      @JsonKey(name: 'headless') bool headless,
-      @JsonKey(name: 'wait_timer') int waitTimer,
-      @JsonKey(name: 'main_category') dynamic mainCategory,
-      @JsonKey(name: 'sub_category') dynamic subCategory}) = _$_Settings;
+      {final int autoUpdateIntervalInMinutes,
+      final int numConcurrentProcess,
+      final bool enableAutoUpdate,
+      @JsonKey(name: 'username') final String? username,
+      @JsonKey(name: 'password') final String? password,
+      @JsonKey(name: 'python3_executable') final String? python3ExePath,
+      @JsonKey(name: 'have_booking') final bool haveBooking,
+      @JsonKey(name: 'headless') final bool headless,
+      @JsonKey(name: 'wait_timer') final int waitTimer,
+      @JsonKey(name: 'main_category') final dynamic mainCategory,
+      @JsonKey(name: 'sub_category') final dynamic subCategory}) = _$_Settings;
 
   factory _Settings.fromJson(Map<String, dynamic> json) = _$_Settings.fromJson;
 
   @override
-  int get autoUpdateIntervalInMinutes;
+  int get autoUpdateIntervalInMinutes => throw _privateConstructorUsedError;
   @override
-  int get numConcurrentProcess;
+  int get numConcurrentProcess => throw _privateConstructorUsedError;
   @override
-  bool get enableAutoUpdate;
+  bool get enableAutoUpdate => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'username')
-  String? get username;
+  String? get username => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'password')
-  String? get password;
+  String? get password => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'python3_executable')
-  String? get python3ExePath;
+  String? get python3ExePath => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'have_booking')
-  bool get haveBooking;
+  bool get haveBooking => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'headless')
-  bool get headless;
+  bool get headless => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'wait_timer')
-  int get waitTimer;
+  int get waitTimer => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'main_category')
-  dynamic get mainCategory;
+  dynamic get mainCategory => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'sub_category')
-  dynamic get subCategory;
+  dynamic get subCategory => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SettingsCopyWith<_Settings> get copyWith =>
+  _$$_SettingsCopyWith<_$_Settings> get copyWith =>
       throw _privateConstructorUsedError;
 }
