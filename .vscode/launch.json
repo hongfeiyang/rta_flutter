@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "rta_flutter",
+            "request": "launch",
+            "deviceId": "macos",
+            "type": "dart"
+        },
+        {
+            "name": "rta_flutter (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "macos",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "rta_flutter (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "macos",
+            "flutterMode": "release"
+        }
+    ]
+}
