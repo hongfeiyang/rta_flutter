@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:macos_ui/macos_ui.dart';
 import 'package:rta_flutter/models/location_state.dart';
 import 'package:tuple/tuple.dart';
 
@@ -48,229 +49,234 @@ class _AvailabilityScreenState extends ConsumerState<AvailabilityScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Consumer(
-            builder: (context, ref, child) {
-              final testCenterLocationsAsyncValue =
-                  ref.watch(testCenterLocationsProvider);
-              return testCenterLocationsAsyncValue.when(
-                data: (testCenterLocations) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      TextField(
-                        controller: _textEditingController,
-                        decoration: const InputDecoration(
-                          hintText: 'Search location',
-                          constraints: BoxConstraints(
-                              maxHeight: 40, minHeight: 40, maxWidth: 120),
-                        ),
-                      ),
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 0,
-                        runSpacing: 0,
+    return MacosScaffold(
+      children: [
+        ContentArea(
+          builder: (context, scrollController) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final testCenterLocationsAsyncValue =
+                      ref.watch(testCenterLocationsProvider);
+                  return testCenterLocationsAsyncValue.when(
+                    data: (testCenterLocations) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          ref.watch(isUpdatingProvier)
-                              ? TextButton(
-                                  onPressed: () {
-                                    ref
-                                        .read(allLocationsAvailabilityProvider
-                                            .notifier)
-                                        .killAllRunningProcess();
-                                  },
-                                  child: const Text('Stop'),
-                                )
-                              : TextButton(
-                                  onPressed: () {
-                                    ref
-                                        .read(allLocationsAvailabilityProvider
-                                            .notifier)
-                                        .updateSelectedAvailability();
-                                  },
-                                  child: const Text(
-                                      'Update Selected Locations Now'),
-                                ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text('Show Available Only'),
-                              Consumer(
-                                builder: (context, ref, child) {
-                                  final showAvailableOnly =
-                                      ref.watch(showAvailableOnlyFilter);
-                                  return Switch(
-                                    value: showAvailableOnly,
-                                    onChanged: (newValue) {
-                                      ref
-                                          .read(
-                                              showAvailableOnlyFilter.notifier)
-                                          .state = newValue;
-                                    },
-                                  );
-                                },
-                              ),
-                            ],
+                          MacosSearchField(
+                            controller: _textEditingController,
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
+                          Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 0,
+                            runSpacing: 0,
                             children: [
-                              const Text('Sort By Distance'),
-                              Consumer(
-                                builder: (context, ref, child) {
-                                  return Switch(
-                                    value: ref.watch(sortByDistanceFilter),
-                                    onChanged: (value) {
-                                      ref
-                                          .read(sortByDistanceFilter.notifier)
-                                          .state = value;
+                              ref.watch(isUpdatingProvier)
+                                  ? TextButton(
+                                      onPressed: () {
+                                        ref
+                                            .read(
+                                                allLocationsAvailabilityProvider
+                                                    .notifier)
+                                            .killAllRunningProcess();
+                                      },
+                                      child: const Text('Stop'),
+                                    )
+                                  : TextButton(
+                                      onPressed: () {
+                                        ref
+                                            .read(
+                                                allLocationsAvailabilityProvider
+                                                    .notifier)
+                                            .updateSelectedAvailability();
+                                      },
+                                      child: const Text(
+                                          'Update Selected Locations Now'),
+                                    ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text('Show Available Only'),
+                                  Consumer(
+                                    builder: (context, ref, child) {
+                                      final showAvailableOnly =
+                                          ref.watch(showAvailableOnlyFilter);
+                                      return MacosSwitch(
+                                        value: showAvailableOnly,
+                                        onChanged: (newValue) {
+                                          ref
+                                              .read(showAvailableOnlyFilter
+                                                  .notifier)
+                                              .state = newValue;
+                                        },
+                                      );
                                     },
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text('Show Selected Only'),
-                              Consumer(
-                                builder: (context, ref, child) {
-                                  return Switch(
-                                    value: ref.watch(showSelectedOnlyFilter),
-                                    onChanged: (value) {
-                                      ref
-                                          .read(showSelectedOnlyFilter.notifier)
-                                          .state = value;
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text('Sort By Distance'),
+                                  Consumer(
+                                    builder: (context, ref, child) {
+                                      return MacosSwitch(
+                                        value: ref.watch(sortByDistanceFilter),
+                                        onChanged: (value) {
+                                          ref
+                                              .read(
+                                                  sortByDistanceFilter.notifier)
+                                              .state = value;
+                                        },
+                                      );
                                     },
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text(
-                                'Your Location: ',
-                                style:
-                                    TextStyle(overflow: TextOverflow.ellipsis),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text('Show Selected Only'),
+                                  Consumer(
+                                    builder: (context, ref, child) {
+                                      return MacosSwitch(
+                                        value:
+                                            ref.watch(showSelectedOnlyFilter),
+                                        onChanged: (value) {
+                                          ref
+                                              .read(showSelectedOnlyFilter
+                                                  .notifier)
+                                              .state = value;
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
-                              Flexible(
-                                child: Consumer(
-                                  builder: (context, ref, child) {
-                                    final p = ref.watch(userLocationProvider);
-                                    return p.when(
-                                      data: (data) {
-                                        return Text(
-                                          'Lat: ${data?.latitude.toStringAsFixed(1)} Lon: ${data?.longitude.toStringAsFixed(1)}',
-                                          style: const TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text(
+                                    'Your Location: ',
+                                    style: TextStyle(
+                                        overflow: TextOverflow.ellipsis),
+                                  ),
+                                  Flexible(
+                                    child: Consumer(
+                                      builder: (context, ref, child) {
+                                        final p =
+                                            ref.watch(userLocationProvider);
+                                        return p.when(
+                                          data: (data) {
+                                            return Text(
+                                              'Lat: ${data?.latitude.toStringAsFixed(1)} Lon: ${data?.longitude.toStringAsFixed(1)}',
+                                              style: const TextStyle(
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            );
+                                          },
+                                          error: (e, stacktrack) {
+                                            return Text('Error: $e');
+                                          },
+                                          loading: () {
+                                            return const ProgressCircle();
+                                          },
                                         );
                                       },
-                                      error: (e, stacktrack) {
-                                        return Text('Error: $e');
-                                      },
-                                      loading: () {
-                                        return const LinearProgressIndicator();
+                                    ),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Consumer(builder: (context, ref, child) {
+                                    return TextButton(
+                                      child: const Text('Get My Location'),
+                                      onPressed: () async {
+                                        ref
+                                            .read(userLocationProvider.notifier)
+                                            .updateLocation();
                                       },
                                     );
-                                  },
-                                ),
+                                  }),
+                                ],
                               ),
-                              const SizedBox(width: 4),
-                              Consumer(builder: (context, ref, child) {
-                                return TextButton(
-                                  child: const Text('Get My Location'),
-                                  onPressed: () async {
-                                    ref
-                                        .read(userLocationProvider.notifier)
-                                        .updateLocation();
-                                  },
-                                );
-                              }),
+                              Consumer(
+                                builder: (context, ref, child) {
+                                  final enabled = ref.watch(autoUpdateProvider
+                                      .select((value) => value.enabled));
+                                  final time = ref.watch(
+                                      autoUpdateProvider.select(
+                                          (value) => value.timeTillNextUpdate));
+
+                                  String displayText;
+
+                                  if (time == null || !enabled) {
+                                    displayText = 'Auto Update Disabled';
+                                  } else {
+                                    final duration = Duration(seconds: time);
+                                    final formattedDuration =
+                                        "${duration.inHours.toString().padLeft(2, '0')}:${duration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(duration.inSeconds.remainder(60).toString().padLeft(2, '0'))}";
+                                    displayText =
+                                        'Next Auto Update: $formattedDuration';
+                                  }
+                                  return Text(displayText);
+                                },
+                              ),
                             ],
                           ),
-                          Consumer(
-                            builder: (context, ref, child) {
-                              final enabled = ref.watch(autoUpdateProvider
-                                  .select((value) => value.enabled));
-                              final time = ref.watch(autoUpdateProvider
-                                  .select((value) => value.timeTillNextUpdate));
-
-                              String displayText;
-
-                              if (time == null || !enabled) {
-                                displayText = 'Auto Update Disabled';
-                              } else {
-                                final duration = Duration(seconds: time);
-                                final formattedDuration =
-                                    "${duration.inHours.toString().padLeft(2, '0')}:${duration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(duration.inSeconds.remainder(60).toString().padLeft(2, '0'))}";
-                                displayText =
-                                    'Next Auto Update: $formattedDuration';
-                              }
-                              return Text(displayText);
-                            },
+                          const _ListRow(
+                            children: [
+                              Tuple2(col1Flex, Text('Location')),
+                              Tuple2(col2Flex, Text('Last Updated')),
+                              Tuple2(col3Flex, Text('Next Available')),
+                              Tuple2(col4Flex, Text('Number Available')),
+                              Tuple2(col5Flex, Text('Distance')),
+                              Tuple2(col6Flex, Text('Process ID')),
+                            ],
+                          ),
+                          const Divider(height: 1),
+                          Expanded(
+                            child: Consumer(builder: (context, ref, child) {
+                              final locations =
+                                  ref.watch(filteredLocationsProvider);
+                              return ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    const Divider(height: 1),
+                                itemBuilder: (context, index) {
+                                  return ProviderScope(
+                                    overrides: [
+                                      _currLocationRow
+                                          .overrideWithValue(locations[index])
+                                    ],
+                                    child: const _LocationListRow(
+                                      col1Flex: col1Flex,
+                                      col2Flex: col2Flex,
+                                      col3Flex: col3Flex,
+                                      col4Flex: col4Flex,
+                                      col5Flex: col5Flex,
+                                      col6Flex: col6Flex,
+                                    ),
+                                  );
+                                },
+                                itemCount: locations.length,
+                              );
+                            }),
                           ),
                         ],
-                      ),
-                      const _ListRow(
-                        children: [
-                          Tuple2(col1Flex, Text('Location')),
-                          Tuple2(col2Flex, Text('Last Updated')),
-                          Tuple2(col3Flex, Text('Next Available')),
-                          Tuple2(col4Flex, Text('Number Available')),
-                          Tuple2(col5Flex, Text('Distance')),
-                          Tuple2(col6Flex, Text('Process ID')),
-                        ],
-                      ),
-                      const Divider(height: 1),
-                      Expanded(
-                        child: Consumer(builder: (context, ref, child) {
-                          final locations =
-                              ref.watch(filteredLocationsProvider);
-                          return ListView.separated(
-                            separatorBuilder: (context, index) =>
-                                const Divider(height: 1),
-                            itemBuilder: (context, index) {
-                              return ProviderScope(
-                                overrides: [
-                                  _currLocationRow
-                                      .overrideWithValue(locations[index])
-                                ],
-                                child: const _LocationListRow(
-                                  col1Flex: col1Flex,
-                                  col2Flex: col2Flex,
-                                  col3Flex: col3Flex,
-                                  col4Flex: col4Flex,
-                                  col5Flex: col5Flex,
-                                  col6Flex: col6Flex,
-                                ),
-                              );
-                            },
-                            itemCount: locations.length,
-                          );
-                        }),
-                      ),
-                    ],
+                      );
+                    },
+                    error: (err, stackTrace) {
+                      return Text('error: $stackTrace');
+                    },
+                    loading: () {
+                      return const ProgressCircle();
+                    },
                   );
                 },
-                error: (err, stackTrace) {
-                  return Text('error: $stackTrace');
-                },
-                loading: () {
-                  return const LinearProgressIndicator();
-                },
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
-      ),
+      ],
     );
   }
 }
@@ -337,7 +343,7 @@ class _LocationListRow extends ConsumerWidget {
               builder: (context, ref, child) {
                 return Row(
                   children: [
-                    Checkbox(
+                    MacosCheckbox(
                         value: rowData.selected,
                         onChanged: (value) {
                           ref
@@ -346,6 +352,7 @@ class _LocationListRow extends ConsumerWidget {
                                   rowData.locationInfo.location,
                                   value == true ? true : false);
                         }),
+                    const SizedBox(width: 4),
                     Flexible(child: Text(rowData.name)),
                   ],
                 );
@@ -386,7 +393,7 @@ class _LocationListRow extends ConsumerWidget {
                         LocationInfoFetchingStatus.loading) ...[
                       const SizedBox.square(
                         dimension: 20,
-                        child: CircularProgressIndicator(),
+                        child: ProgressCircle(),
                       )
                     ] else if (rowData.status ==
                         LocationInfoFetchingStatus.error) ...[

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:macos_ui/macos_ui.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rta_flutter/providers/providers.dart';
 
@@ -24,19 +25,21 @@ void main() async {
 
   final notificationService = NotificationService();
   await notificationService.init();
-  runApp(ProviderScope(
-    overrides: [
-      notificationServiceProvider.overrideWithValue(notificationService),
-      resourceProvider.overrideWithValue(
-        ResourceState(
-          scriptFilePath: scriptFilePath,
-          settingsFilePath: settingsFilePath,
-          applicationSupportDirectoryPath: supportDir.path,
-        ),
-      )
-    ],
-    child: const MyApp(),
-  ));
+  runApp(
+    ProviderScope(
+      overrides: [
+        notificationServiceProvider.overrideWithValue(notificationService),
+        resourceProvider.overrideWithValue(
+          ResourceState(
+            scriptFilePath: scriptFilePath,
+            settingsFilePath: settingsFilePath,
+            applicationSupportDirectoryPath: supportDir.path,
+          ),
+        )
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 Future<void> initialSetup() async {}
@@ -80,16 +83,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'RobotoMono',
-      ),
-      debugShowCheckedModeBanner: false,
-      routeInformationParser: _router.routeInformationParser,
-      routerDelegate: _router.routerDelegate,
-      localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
-      supportedLocales: const [Locale('en', 'AU')],
-    );
+    return Consumer(builder: (context, ref, child) {
+      return MacosApp.router(
+        title: 'macos_ui Widget Gallery',
+        theme: MacosThemeData.light(),
+        darkTheme: MacosThemeData.dark(),
+        themeMode: ref.watch(appThemeProvider),
+        debugShowCheckedModeBanner: false,
+        routeInformationParser: _router.routeInformationParser,
+        routerDelegate: _router.routerDelegate,
+        localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+        supportedLocales: const [Locale('en', 'AU')],
+      );
+    });
   }
 }

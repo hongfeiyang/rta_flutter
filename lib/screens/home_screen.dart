@@ -1,98 +1,122 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:rta_flutter/utils.dart';
+import 'package:macos_ui/macos_ui.dart';
+import 'package:rta_flutter/screens/screens.dart';
 
-import '../providers/providers.dart';
-
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  double ratingValue = 0;
+  double sliderValue = 0;
+  bool value = false;
+
+  int pageIndex = 0;
+
+  late final searchFieldController = TextEditingController();
+  late final scrollController = ScrollController();
+
+  final List<Widget> pages = [
+    CupertinoTabView(
+      builder: (_) => const AvailabilityScreen(),
+    ),
+    const SettingsScreen(),
+    Navigator(
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => const WatcherScreen(),
+        );
+      },
+    ),
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            ListTile(
-              title: const Text('Availabilities'),
-              onTap: () {
-                context.push('/availabilities');
-              },
+    return PlatformMenuBar(
+      menus: const [
+        PlatformMenu(
+          label: 'NSW Driving Test Booking',
+          menus: [
+            PlatformProvidedMenuItem(
+              type: PlatformProvidedMenuItemType.about,
             ),
-            ListTile(
-              title: const Text('Settings'),
-              onTap: () {
-                context.push('/settings');
-              },
+            PlatformProvidedMenuItem(
+              type: PlatformProvidedMenuItemType.quit,
             ),
           ],
         ),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Consumer(builder: (context, ref, child) {
-                  return Flexible(
-                    child: TextButton(
-                        onPressed: () {
-                          context.push('/addWatcherConfig');
-                        },
-                        child: const Text('Add config')),
-                  );
-                })
-              ],
+        PlatformMenu(
+          label: 'View',
+          menus: [
+            PlatformProvidedMenuItem(
+              type: PlatformProvidedMenuItemType.toggleFullScreen,
             ),
-            Consumer(builder: (context, ref, child) {
-              final configs = ref.watch(bookingWatcherProvider);
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: configs.length,
-                  itemBuilder: (context, index) {
-                    return TextButton(
-                      onPressed: () {
-                        context.push(
-                          '/addWatcherConfig',
-                          extra: configs[index],
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          Flexible(
-                              child: Text('${configs[index].recipientEmail}')),
-                          const SizedBox(width: 16),
-                          Flexible(
-                            child: Text(CustomTimeParser.convertToDateString(
-                                configs[index].startPreferredDate)),
-                          ),
-                          const SizedBox(width: 16),
-                          Flexible(
-                            child: Text(CustomTimeParser.convertToDateString(
-                                configs[index].endPreferredDate)),
-                          ),
-                          const SizedBox(width: 16),
-                          Flexible(
-                            child: Text(CustomTimeParser.convertToTimeString(
-                                configs[index].startPreferredTime)),
-                          ),
-                          const SizedBox(width: 16),
-                          Flexible(
-                            child: Text(
-                              CustomTimeParser.convertToTimeString(
-                                  configs[index].endPreferredTime),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              );
-            }),
           ],
+        ),
+        PlatformMenu(
+          label: 'Window',
+          menus: [
+            PlatformProvidedMenuItem(
+              type: PlatformProvidedMenuItemType.minimizeWindow,
+            ),
+            PlatformProvidedMenuItem(
+              type: PlatformProvidedMenuItemType.zoomWindow,
+            ),
+          ],
+        ),
+      ],
+      body: MacosWindow(
+        sidebar: Sidebar(
+          top: const MacosSearchField(),
+          minWidth: 200,
+          builder: (context, scrollController) {
+            return SidebarItems(
+              currentIndex: pageIndex,
+              onChanged: (i) => setState(() => pageIndex = i),
+              scrollController: scrollController,
+              items: const [
+                SidebarItem(
+                  leading: MacosIcon(CupertinoIcons.doc),
+                  label: Text('Availabilities'),
+                ),
+                SidebarItem(
+                  leading: MacosIcon(CupertinoIcons.settings),
+                  label: Text('Settings'),
+                ),
+                SidebarItem(
+                  leading: MacosIcon(CupertinoIcons.eye),
+                  label: Text('Watcher'),
+                ),
+              ],
+            );
+          },
+        ),
+        // drawer: Drawer(
+        //   child: Column(
+        //     children: [
+        //       ListTile(
+        //         title: const Text('Availabilities'),
+        //         onTap: () {
+        //           context.push('/availabilities');
+        //         },
+        //       ),
+        //       ListTile(
+        //         title: const Text('Settings'),
+        //         onTap: () {
+        //           context.push('/settings');
+        //         },
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        child: IndexedStack(
+          index: pageIndex,
+          children: pages,
         ),
       ),
     );

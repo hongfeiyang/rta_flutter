@@ -47,6 +47,7 @@ dependencies:
   json_annotation: ^4.4.0
   json_serializable: ^6.1.4
   location: ^4.3.0
+  macos_ui: ^1.4.1
   path_provider: ^2.0.9
   pool: ^1.5.0
   tuple: ^2.0.0

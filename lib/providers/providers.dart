@@ -1,3 +1,4 @@
+export 'app_theme_provider.dart';
 export 'availability_screen_providers.dart';
 export 'booking_watcher_provider.dart';
 export 'location_availability_provider.dart';
