@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+
+typedef Reader = T Function<T>(ProviderListenable<T> provider);
 
 class CustomTimeParser {
   static final DateFormat rtaDateTimeParserFormatter =

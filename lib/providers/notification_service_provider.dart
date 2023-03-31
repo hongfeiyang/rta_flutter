@@ -15,8 +15,8 @@ class NotificationService {
   Future<void> init() async {
     /// Note: permissions aren't requested here just to demonstrate that can be
     /// done later
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(onDidReceiveLocalNotification: (
+    final DarwinInitializationSettings initializationSettingsIOS =
+        DarwinInitializationSettings(onDidReceiveLocalNotification: (
       int id,
       String? title,
       String? body,
@@ -24,8 +24,8 @@ class NotificationService {
     ) async {
       debugPrint('did receive notification');
     });
-    const MacOSInitializationSettings initializationSettingsMacOS =
-        MacOSInitializationSettings();
+    const DarwinInitializationSettings initializationSettingsMacOS =
+        DarwinInitializationSettings();
     final LinuxInitializationSettings initializationSettingsLinux =
         LinuxInitializationSettings(
       defaultActionName: 'Open notification',
@@ -49,12 +49,12 @@ class NotificationService {
     //         : await flutterLocalNotificationsPlugin
     //             .getNotificationAppLaunchDetails();
 
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String? payload) async {
-      if (payload != null) {
-        debugPrint('notification payload: $payload');
-      }
-    });
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: (details) {
+        debugPrint('notification: $details');
+      },
+    );
   }
 
   Future<void> requestPermissions() async {
@@ -82,10 +82,10 @@ class NotificationService {
       channelDescription: 'your other channel description',
       sound: RawResourceAndroidNotificationSound('slow_spring_board'),
     );
-    const IOSNotificationDetails iOSPlatformChannelSpecifics =
-        IOSNotificationDetails(sound: 'slow_spring_board.aiff');
-    const MacOSNotificationDetails macOSPlatformChannelSpecifics =
-        MacOSNotificationDetails(sound: 'slow_spring_board.aiff');
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(sound: 'slow_spring_board.aiff');
+    const DarwinNotificationDetails macOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(sound: 'slow_spring_board.aiff');
     final LinuxNotificationDetails linuxPlatformChannelSpecifics =
         LinuxNotificationDetails(
       sound: AssetsLinuxSound('sound/slow_spring_board.mp3'),

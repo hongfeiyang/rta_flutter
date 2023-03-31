@@ -3,6 +3,8 @@ import 'package:location/location.dart';
 import 'package:rta_flutter/models/location_coordinates.dart';
 import 'package:rta_flutter/providers/location_availability_provider.dart';
 
+import '../utils.dart';
+
 final userLocationProvider = StateNotifierProvider<UserLocationStateNotifier,
     AsyncValue<LocationCoordinates?>>(
   (ref) {
@@ -20,29 +22,31 @@ class UserLocationStateNotifier
   void updateLocation() async {
     final location = Location();
 
-    var _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        state = const AsyncError('Location Service not enabled');
+    var serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        state =
+            const AsyncError('Location Service not enabled', StackTrace.empty);
       }
     }
 
-    var _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        state = const AsyncError('Location Service access denied');
+    var permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        state = const AsyncError(
+            'Location Service access denied', StackTrace.empty);
       }
     }
 
-    LocationData _locationData = await location.getLocation();
+    LocationData locationData = await location.getLocation();
 
-    if (_locationData.latitude == null || _locationData.longitude == null) {
+    if (locationData.latitude == null || locationData.longitude == null) {
       state = const AsyncData(null);
     }
     final userLocation = LocationCoordinates(
-        latitude: _locationData.latitude!, longitude: _locationData.longitude!);
+        latitude: locationData.latitude!, longitude: locationData.longitude!);
     state = AsyncData(userLocation);
     read(allLocationsAvailabilityProvider.notifier)
         .updateDistance(userLocation);

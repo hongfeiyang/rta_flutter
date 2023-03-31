@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rta_flutter/providers/location_availability_provider.dart';
 
 import '../models/auto_update_timer_state.dart';
+import '../utils.dart';
 
 final autoUpdateProvider =
     StateNotifierProvider<AutoUpdateTimerNotifier, AutoUpdateTimerState>(

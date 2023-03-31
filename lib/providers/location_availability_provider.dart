@@ -7,6 +7,7 @@ import 'package:pool/pool.dart';
 import 'package:rta_flutter/providers/providers.dart';
 
 import '../models/models.dart';
+import '../utils.dart';
 
 final allLocationsAvailabilityProvider =
     StateNotifierProvider<LocationAvailabilityNotifier, List<LocationState>>(
